@@ -4,6 +4,16 @@
   "version": "10.1.1",
   "api_version": 4,
   "default_locale": "en-us",
+    "locales": {
+    "en": {
+      "welcome_message": "Welcome!",
+      "topbar_link_1_title": "Models"
+    },
+    "fr": {
+      "welcome_message": "Bienvenue !",
+      "topbar_link_1_title": "Modèles"
+    }
+  },
   "settings": [
     {
       "label": "Translations",
