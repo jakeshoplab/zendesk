@@ -1,8 +1,4 @@
 {
-  "name": "My Sample Theme",
-  "author": "Your Name",
-  "defaultLocale": "en",
-  "version": "1.0.0",
   "locales": {
     "en": {
       "welcome_message": "Welcome to our Help Center!",
