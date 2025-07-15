@@ -15,11 +15,11 @@
       "search_placeholder": "Rechercher des articles..."
     }
   },
-  "settings": {
+  "settings": [
     "brand_color": {
       "type": "color",
       "label": "Brand color",
       "default": "#000000"
     }
-  }
+]
 }
