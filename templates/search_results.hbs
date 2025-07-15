@@ -1,0 +1,288 @@
+<!-- <div class="lt-hero-unit lt-container lt-py-7 lt-mt-n8 lt-d-print-none">
+  <div class="lt-container-inner">
+    <div class="lt-search-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
+         <use xlink:href="#icon-search"></use>
+      </svg>
+      {{search instant=true submit=false placeholder=settings.search_placeholder}}
+    </div>
+  </div>
+</div> -->
+
+<div class="lt-breadcrumbs-wrapper lt-mb-8 lt-container lt-d-print-none">
+  <div class="lt-container-inner">{{breadcrumbs}}</div>
+</div>
+
+<div class="lt-container lt-search-results-page lt-pb-8">
+  <div class="lt-container-inner">
+    <div class="lt-row lt-gy-5">
+      {{#if results}}
+        <aside class="lt-col-lg-4 lt-col-xl-3">
+          <div class="lt-search-filters">
+            {{#if source_filters}}
+              <section 
+                class="lt-search-filter lt-py-4 lt-px-3" 
+                data-search-filter>
+                <h3 class="h5 lt-ps-2 lt-pe-3 lt-mb-0 lt-mb-lg-2 lt-d-none lt-d-lg-block">
+                  {{t 'filter_by_help_center'}}
+                </h3>
+
+                <button 
+                  class="h5 lt-search-filter__btn lt-ps-2 lt-pe-3 lt-mb-0 lt-mb-lg-2 lt-d-lg-none"
+                  type="button" 
+                  aria-expanded="false" 
+                  data-search-filter-toggle>
+                  <span class="lt-search-filter__btn-content">
+                    <span>{{t 'filter_by_help_center'}}</span>
+                    <svg class="lt-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                      <use xlink:href="#icon-chevron-down"></use>
+                    </svg>
+                  </span> 
+                </button>
+
+                <ul role="list" 
+                  class="lt-list-unstyled lt-search-filter__list lt-d-none lt-d-lg-block lt-mb-0 lt-mt-1 lt-mt-lg-0" 
+                  data-search-filter-list>
+                  {{#each source_filters}}
+                    <li class="lt-search-filter__item {{#if selected}}is-active{{/if}}">
+                      <a 
+                        class="lt-search-filter__link lt-d-flex lt-justify-content-between lt-py-2 lt-px-3"
+                        href="{{url}}">
+                        <span class="lt-search-filter__name">{{name}}</span>
+                        <span class="lt-search-filter__count lt-ms-2">{{count}}</span>
+                      </a>
+                    </li>
+                  {{/each}}
+                </ul>
+
+              </section>
+            {{/if}}
+            {{#if type_filters}}
+              <section class="lt-search-filter lt-py-4 lt-px-3" data-search-filter>
+                <h3 class="h5 lt-ps-2 lt-pe-3 lt-mb-0 lt-mb-lg-2 lt-d-none lt-d-lg-block">
+                  {{t 'filter_type'}}
+                </h3>
+                <button 
+                  class="h5 lt-search-filter__btn lt-ps-2 lt-pe-3 lt-mb-0 lt-mb-lg-2 lt-d-lg-none"
+                  type="button" 
+                  aria-expanded="false" 
+                  data-search-filter-toggle>
+                  <span class="lt-search-filter__btn-content">
+                    <span>{{t 'filter_type'}}</span>
+                    <svg class="lt-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                      <use xlink:href="#icon-chevron-down"></use>
+                    </svg>
+                  </span> 
+                </button>
+                <ul role="list" 
+                  class="lt-list-unstyled lt-search-filter__list lt-d-none lt-d-lg-block lt-mb-0 lt-mt-1 lt-mt-lg-0" 
+                  data-search-filter-list>
+                  {{#each type_filters}}
+                    <li class="lt-search-filter__item {{#if selected}}is-active{{/if}}" data-search-filter-item>
+                      <a href="{{url}}" class="lt-search-filter__link lt-d-flex lt-justify-content-between lt-py-2 lt-px-3">
+                        <span class="lt-search-filter__name">{{name}}</span>
+                        <span class="lt-search-filter__count lt-ms-2">{{count}}</span>
+                      </a>
+                    </li>
+                  {{/each}}
+                </ul>
+              </section>
+            {{/if}}
+            {{#if subfilters}}
+              <section class="lt-search-filter lt-py-4 lt-px-3" data-search-filter>
+                {{#is current_filter.identifier 'knowledge_base'}}
+                <h3 class="h5 lt-ps-2 lt-pe-3 lt-mb-0 lt-mb-lg-2 lt-d-none lt-d-lg-block">
+                    {{t 'filter_by_category'}}
+                  </h3>
+                  <button 
+                    class="h5 lt-search-filter__btn lt-ps-2 lt-pe-3 lt-mb-0 lt-mb-lg-2 lt-d-lg-none"
+                    type="button" 
+                    aria-expanded="false" 
+                    data-search-filter-toggle>
+                    <span class="lt-search-filter__btn-content">
+                      <span>{{t 'filter_by_category'}}</span>
+                      <svg class="lt-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <use xlink:href="#icon-chevron-down"></use>
+                      </svg>
+                    </span> 
+                  </button>
+                {{/is}}
+                {{#is current_filter.identifier 'community'}}
+                  <h3 class="h5 lt-ps-2 lt-pe-3 lt-mb-0 lt-mb-lg-2 lt-d-none lt-d-lg-block">
+                    {{t 'filter_by_topic'}}
+                  </h3>
+                  <button 
+                    class="h5 lt-search-filter__btn lt-ps-2 lt-pe-3 lt-mb-0 lt-mb-lg-2 lt-d-lg-none"
+                    type="button" 
+                    aria-expanded="false" 
+                    data-search-filter-toggle>
+                    <span class="lt-search-filter__btn-content">
+                      <span>{{t 'filter_by_topic'}}</span>
+                      <svg class="lt-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <use xlink:href="#icon-chevron-down"></use>
+                      </svg>
+                    </span> 
+                  </button>
+                {{/is}}
+                <ul role="list" 
+                  class="lt-list-unstyled lt-search-filter__list lt-d-none lt-d-lg-block lt-mb-0 lt-mt-1 lt-mt-lg-0" 
+                  data-search-filter-list 
+                  data-search-subfilters>
+                  {{#each subfilters}}
+                    <li class="lt-search-filter__item lt-search-filter__item--subfilter {{#if selected}}is-active{{/if}}" data-search-filter-item>
+                      <a href="{{url}}" class="lt-search-filter__link lt-d-flex lt-justify-content-between lt-py-2 lt-px-3">
+                        <span class="lt-search-filter__name">{{name}}</span>
+                        <span class="lt-search-filter__count lt-ms-2">{{count}}</span>
+                      </a>
+                    </li>
+                  {{/each}}
+                  {{#is current_filter.identifier 'knowledge_base'}}
+                    <li class="lt-search-filter__item">
+                      <button class="search-result__show-more is-hidden" data-search-filter-show-more>{{t 'show_more_categories'}}</button>
+                    </li>
+                  {{/is}}
+                  {{#is current_filter.identifier 'community'}}
+                    <li class="lt-search-filter__item">
+                      <button class="search-result__show-more is-hidden" data-search-filter-show-more>{{t 'show_more_topics'}}</button>
+                    </li>
+                  {{/is}}
+                </ul>
+              </section>
+            {{/if}}
+            {{#if content_tag_filters}}
+              <section class="lt-search-filter lt-py-4 lt-px-3" data-search-filter>
+                <h3 class="h5 lt-ps-2 lt-pe-3 lt-mb-0 lt-mb-lg-2 lt-d-none lt-d-lg-block">{{t 'filter_content_tag'}}</h3>
+                <button 
+                class="h5 lt-search-filter__btn lt-ps-2 lt-pe-3 lt-mb-0 lt-mb-lg-2 lt-d-lg-none"
+                type="button" 
+                aria-expanded="false" 
+                data-search-filter-toggle>
+                <span class="lt-search-filter__btn-content">
+                  <span>{{t 'filter_content_tag'}}</span>
+                  <svg class="lt-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <use xlink:href="#icon-chevron-down"></use>
+                  </svg>
+                </span>
+                 </button>
+                 
+                 <ul role="list" 
+                  class="lt-list-unstyled lt-search-filter__list lt-d-none lt-d-lg-block lt-mb-0 lt-mt-1 lt-mt-lg-0"
+                  data-search-filter-list >
+                  {{#each content_tag_filters}}
+                    {{#if selected}}
+                      <li class="lt-search-filter__item is-active">
+                        <div class="lt-search-filter__link lt-d-flex lt-justify-content-between lt-py-2 lt-px-3">
+                          <span class="label">{{name}}</span>
+                          <a class="lt-ms-2" href="{{url}}" aria-current="page">
+                            <span>
+                              <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false"  aria-hidden="true" >
+                                  <path stroke="currentColor" stroke-linecap="round" d="M3 9l6-6m0 6L3 3"/>
+                              </svg>
+                            </span>
+                          </a>
+                        </div>
+                      </li>
+                    {{/if}}
+                  {{/each}}
+                </ul>
+              </section>
+            {{/if}}
+          </div>
+        </aside>
+      {{/if}}
+
+      <div class="lt-col-lg-8 lt-col-xl-9" id="main-content">
+        {{#if results}}
+          <h1 class="h4 lt-mb-3">
+          {{#if results}}
+            {{#is current_filter.identifier 'unified'}}
+              {{#if content_tag_filters }}
+                {{#each (filter content_tag_filters on="selected" equals=true)}}
+                  {{t 'results_content_tag' content_tag=name count=../results_count}}
+                {{/each}}
+              {{else}}
+                {{t 'results' query=query count=results_count}}
+              {{/if}}
+            {{else}}
+              {{#if content_tag_filters }}
+                {{#each (filter content_tag_filters on="selected" equals=true)}}
+                  {{t 'results_content_tag' content_tag=name count=../results_count}}
+                {{/each}}
+              {{else}}
+                {{#unless current_subfilter.identifier}}
+                  {{t 'results' query=query count=results_count}}
+                {{else}}
+                  {{t 'results_with_scope' query=query count=results_count scope_name=current_subfilter.name}}
+                {{/unless}}
+              {{/if}}
+            {{/is}}
+          {{/if}}
+          </h1>
+          <ul role="list" class="lt-list-unstyled search-results-list lt-mt-0 lt-mb-3">
+            {{#each results}}
+              <li class="lt-search-result lt-search-result--{{type}} lt-pt-4">
+                <ol role="list" class="breadcrumbs lt-breadcrumbs--search-results lt-mb-3">
+                  {{#each path_steps}}
+                    <li title="{{name}}"><a href="{{url}}">{{name}}</a></li>
+                  {{/each}}
+                </ol>
+                <h2 class="h5 lt-search-result__title lt-mb-3">
+                  <a href="{{url}}" {{#if is_external}} target="_blank" {{/if}}>{{title}}</a>
+                </h2>
+     
+                <div class="lt-search-result__text lt-mb-3">{{text}}</div>
+
+                <div class="lt-meta lt-meta--search lt-mb-4">
+                  {{#if ../settings.show_article_author}}
+                    {{#unless is_external}}
+                      <span class="lt-meta__item">
+                        {{#link "user_profile" id=author.id class="lt-meta__link"}}
+                          {{author.name}}
+                        {{/link}}
+                      </span>
+                    {{/unless}}
+                  {{/if}}
+                  <span class="lt-meta__item">{{date created_at format="medium"}}</span>
+                  {{#if ../settings.show_article_comments}}
+                    <span class="lt-meta__item">
+                      <span class="sr-only">{{t 'comments_count' count=comment_count}}</span>
+                      <span aria-hidden="true">
+                        <svg class="lt-flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="16" height="16">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.068.157 2.148.279 3.238.364.466.037.893.281 1.153.671L12 21l2.652-3.978c.26-.39.687-.634 1.153-.67 1.09-.086 2.17-.208 3.238-.365 1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
+                        </svg>
+                        {{comment_count}}
+                      </span>
+                    </span>
+                  {{/if}}
+                  {{#if vote_sum}}
+                  <span class="lt-meta__item">
+                    <span class="sr-only">{{t 'votes_sum' count=vote_sum}}</span>
+                    <span aria-hidden="true">
+                      <svg class="lt-flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="16" height="16">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z" />
+                      </svg>
+                      {{vote_sum}}
+                    </span>
+                  </span>
+                  {{/if}}
+                </div>
+              </li>
+            {{/each}}
+          </ul>
+        {{else}}
+
+          <div class="lt-flow">
+            <h1 class="h3">{{t 'no_results' query=query}}</h1>
+            <p>
+              {{t 'no_results_unified'}}
+              {{#link 'help_center'}}
+                {{t 'browse_help_center'}}
+              {{/link}}
+            </p>
+          </div>
+        {{/if}}
+        {{pagination}}
+      </div>
+    </div>
+  </div>
+</div>

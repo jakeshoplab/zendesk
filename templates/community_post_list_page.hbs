@@ -1,0 +1,147 @@
+<!-- <div class="lt-hero-unit lt-container lt-py-7 lt-mt-n8 lt-d-print-none">
+  <div class="lt-container-inner">
+    <div class="lt-search-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
+         <use xlink:href="#icon-search"></use>
+      </svg>
+      {{search instant=true submit=false placeholder=settings.search_placeholder}}
+    </div>
+  </div>
+</div> -->
+
+<div class="lt-breadcrumbs-wrapper lt-mb-8 lt-container lt-d-print-none">
+  <div class="lt-container-inner">{{breadcrumbs}}</div>
+</div>
+
+<div class="lt-container lt-pb-9">
+  <div class="lt-container-inner">
+    <nav class="lt-community-nav lt-mb-4">
+      <ul role="list" class="lt-list-unstyled lt-d-md-flex lt-align-items-center lt-mt-0 lt-mb-1">
+        <li class="lt-community-nav-item">{{link 'topics'}}</li>
+        <li class="lt-community-nav-item is-active">{{t 'posts'}}</li>
+        <li class="lt-community-nav-item lt-ms-md-auto">{{link 'new_post' role='button' class='lt-btn lt-btn--primary'}} </li>
+      </ul>
+    </nav>
+
+    <div class="lt-topic-controls lt-mb-2">
+      <div class="lt-d-md-flex lt-align-items-center">
+        <span class="lt-dropdown lt-community-nav-item">
+          <button 
+            class="lt-dropdown-toggle" 
+            aria-haspopup="true">
+            <span>{{current_filter.label}}</span>
+            <svg class="lt-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <use xlink:href="#icon-chevron-down"></use>
+            </svg>
+          </button>
+          <span class="lt-dropdown-menu" role="menu">
+            {{#each filters}}
+              <a href="{{url}}" aria-selected="{{selected}}" role="menuitem">
+                {{name}}
+              </a>
+            {{/each}}
+          </span>
+        </span>
+
+        <span class="lt-dropdown lt-community-nav-item">
+          <button 
+            class="lt-dropdown-toggle"
+            aria-haspopup="true">
+            <span>{{current_sorter.label}}</span>
+            <svg class="lt-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <use xlink:href="#icon-chevron-down"></use>
+            </svg>
+          </button>
+          <span class="lt-dropdown-menu" role="menu">
+            {{#each sorters}}
+              <a href="{{url}}" aria-selected="{{selected}}" role="menuitem">
+                {{name}}
+              </a>
+            {{/each}}
+          </span>
+        </span>
+      </div>
+    </div>
+
+    {{#if posts}}
+      <ul role="list" class="lt-list-unstyled lt-mb-4 lt-mt-0">
+        {{#each posts}}
+          <li
+              class="lt-post-list-item lt-d-flex lt-flex-column lt-flex-md-row  {{#if has_official_comment}} question-official-answer {{/if}} {{#if featured}} lt-post-list-item--featured {{/if}} {{#if pinned}} lt-post-list-item--pinned {{/if}}">
+
+            <div class="lt-d-none lt-d-md-flex lt-flex-shrink-0 lt-me-3">
+              <img class="lt-user-avatar lt-user-avatar--default"
+                  src="{{author.avatar_url}}" />
+            </div>
+
+            <div
+                class="lt-me-auto lt-d-flex lt-flex-column lt-flex-sm-row lt-justify-content-between lt-w-100 lt-align-items-start lt-align-items-sm-center">
+              <div>
+
+                <h3 class="h5 lt-post-list-item__title lt-mb-1">
+                  {{#if pinned}}
+                    <svg class="lt-star-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                    </svg>
+                  {{/if}}
+
+                  <a href="{{url}}">{{title}}</a>
+                </h3>
+                <div class="lt-meta lt-mb-2 lt-mb-sm-0">
+                  <span class="lt-meta__item">
+                    {{#if author.url}}
+                      <a class="lt-meta__link" href="{{author.url}}"
+                        target="_zendesk_lotus">
+                        {{author.name}}
+                      </a>
+                    {{else}}
+                      {{author.name}}
+                    {{/if}}
+                  </span>
+                  <span class="lt-meta__item">
+                    {{date created_at timeago=true}}
+                  </span>
+                </div>
+              </div>
+              {{! Show the post status, if any }}
+              {{#is status 'none'}}
+              {{else}}
+              <span
+                class="lt-pill lt-pill--sm {{#is status 'completed'}}lt-pill--success{{/is}} {{#is status 'answered'}}lt-pill--success{{/is}} lt-mb-2 lt-mb-sm-0 lt-ms-sm-4">
+                {{status_name}}
+              </span>
+              {{/is}}
+            </div>
+
+            <div
+                class="lt-d-flex lt-align-items-center lt-flex-shrink-0 lt-post-list-item__side lt-ms-md-4">
+              <div>
+                <span class="sr-only">{{t 'comments_count' count=comment_count}}</span>
+                <span class="lt-d-flex lt-align-items-center">
+                  <svg class="lt-flex-shrink-0 lt-me-1 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="16" height="16">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.068.157 2.148.279 3.238.364.466.037.893.281 1.153.671L12 21l2.652-3.978c.26-.39.687-.634 1.153-.67 1.09-.086 2.17-.208 3.238-.365 1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
+                  </svg>
+
+                  {{comment_count}}
+                </span>
+              </div>
+              <div class="lt-ms-4">
+                <span class="sr-only">{{t 'votes_sum' count=vote_sum}}</span>
+                <span class="lt-d-flex lt-align-items-center">
+                  <svg class="lt-flex-shrink-0 lt-me-1 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="16" height="16">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z" />
+                  </svg>
+                  {{vote_sum}}
+                </span>
+              </div>
+            </div>
+          </li>
+        {{/each}}
+      </ul>
+
+      {{pagination}}
+    {{else}}
+      <p>{{t 'no_content'}}</p>
+    {{/if}}
+  </div>
+</div>

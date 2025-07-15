@@ -1,0 +1,262 @@
+<!-- <div class="lt-hero-unit lt-container lt-py-7 lt-mt-n8 lt-d-print-none">
+  <div class="lt-container-inner">
+    <div class="lt-search-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
+         <use xlink:href="#icon-search"></use>
+      </svg>
+      {{search instant=true submit=false placeholder=settings.search_placeholder}}
+    </div>
+  </div>
+</div> -->
+
+<div class="lt-breadcrumbs-wrapper lt-mb-8 lt-container lt-d-print-none">
+  <div class="lt-container-inner">{{breadcrumbs}}</div>
+</div>
+
+<div class="lt-container lt-pb-9">
+  <div class="lt-container-inner lt-container-inner--narrow" id="main-content">
+    <article class="lt-post lt-mb-8 {{#if post.featured}} post--featured {{/if}} {{#if post.pinned}} post--pinned {{/if}}">
+      <div class="lt-flow">
+        {{#is post.status 'none'}}
+        {{else}}
+          <span class="lt-pill lt-pill--sm {{#is post.status 'completed'}}lt-pill--success{{/is}} {{#is post.status 'answered'}}lt-pill--success{{/is}}">{{post.status_name}} </span>
+        {{/is}}
+
+        <h1 class="lt-post__title">{{post.title}}</h1>
+
+        <div class="lt-d-sm-flex lt-justify-content-between lt-mb-4 lt-align-items-start">
+          <div class="lt-mb-2 lt-mb-sm-0 lt-me-sm-4">
+            <div class="lt-entry-info">
+              <div class="lt-entry-info__avatar">
+                <div class="lt-avatar {{#if post.author.agent}}lt-avatar--agent{{/if}}">
+                  <img class="lt-user-avatar lt-user-avatar--default" src="{{post.author.avatar_url}}" alt="Avatar">
+                  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <use xlink:href="#icon-user"></use>
+                  </svg>
+                </div>
+              </div>
+              <div class="lt-entry-info__content">
+                <b class="author">
+                  {{#link 'user_profile' id=post.author.id}}
+                    {{post.author.name}}
+                  {{/link}}
+                </b>
+                <div class="lt-meta">                      
+                  {{#if post.editor}}
+                    {{t 'updated'}} {{date post.edited_at timeago=true}}
+                  {{else}}
+                    {{date post.created_at timeago=true}}
+                  {{/if}}
+                </div>
+                {{#each post.author.badges}}
+                  {{#is category_slug "achievements"}}
+                   {{#if icon_url}}
+                    <div class="community-badge community-badge-achievements">
+                      <img src="{{icon_url}}" alt="{{name}}" title="{{name}} | {{description}}" aria-label="{{name}}" />
+                     </div>
+                   {{/if}}
+                  {{/is}}
+                {{/each}}
+              </div>
+            </div>
+          </div>
+          <div class="lt-follow lt-d-flex lt-d-print-none lt-align-items-center">
+            {{#if settings.show_community_post_sharing}}
+              <div class="lt-dropdown" aria-haspopup="true">
+                <button class="lt-btn lt-btn--icon lt-dropdown-toggle">
+                  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="24" height="24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25H15m0-3l-3-3m0 0l-3 3m3-3V15" />
+                  </svg>
+                  <span class="sr-only">{{t 'share'}}</span>
+                </button>
+                <div class="lt-dropdown-menu lt-px-4">
+                  {{share}}
+                </div>
+              </div>
+            {{/if}}
+            {{#if settings.show_print_article}}
+              <button class="lt-btn lt-btn--icon" onclick="javascript:print();">
+                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="24" height="24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5zm-3 0h.008v.008H15V10.5z" />
+                </svg>
+              </button>
+            {{/if}} 
+            {{#if settings.show_follow_community_post}}
+              {{subscribe}}
+            {{/if}}
+          </div>
+        </div>
+
+      <div class="lt-post__text rte {{#if settings.beautify_article}}rte-enhanced{{/if}}">
+        {{post.details}}
+      </div>
+
+      <div class="lt-post__voting-and-actions lt-mb-4">
+        <div class="lt-vote">
+          {{#post.vote 'up' class='lt-btn lt-btn--icon lt-vote__control lt-vote__control--up' selected_class='lt-vote__control--active' role='button'}}
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="16" height="16">
+              <use xlink:href="#hand-thumb-up"></use>
+            </svg>
+          {{/post.vote}}
+          {{post.vote 'sum' class='lt-vote__sum'}}
+          {{#post.vote 'down' class='lt-btn lt-btn--icon lt-vote__control lt-vote__control--down' selected_class='lt-vote__control--active' role='button'}}
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="16" height="16">
+              <use xlink:href="#hand-thumb-down"></use>
+            </svg>
+          {{/post.vote}}
+          {{#post.actions}}
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
+              <use xlink:href="#icon-menu"></use>
+            </svg>
+          {{/post.actions}}
+        </div>
+      </div>
+    </article>
+
+    <section class="lt-comments" id="comments" itemscope
+              itemtype="http://schema.org/UserComments">
+      <header class="lt-comments__header">
+        <h3 class="h3 lt-mb-3">{{t 'comments'}}</h3>
+    
+        <div class="lt-comment-sorter lt-mb-5 lt-d-print-none lt-d-md-flex lt-align-items-center lt-justify-content-between">
+          <div class="lt-mb-4 lt-pe-md-4">
+            {{t 'comments_count' count=post.comment_count}}
+          </div>
+        
+          {{#if comments}}
+            <div class="lt-dropdown lt-mb-4">
+              <button class="lt-dropdown-toggle" aria-haspopup="true">
+                <span>{{t 'sort_by'}}</span>
+                <svg class="lt-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                  <use xlink:href="#icon-chevron-down"></use>
+                </svg>
+              </button>
+              <span class="lt-dropdown-menu lt-dropdown-menu-end" role="menu">
+                {{#each comment_sorters}}
+                  <a 
+                    aria-selected="{{selected}}" href="{{url}}"
+                    role="menuitem">{{name}}</a>
+                {{/each}}
+              </span>
+            </div>
+          {{/if}}
+        </div>
+      </header>
+    
+      {{#if comments}}
+        <ul class="lt-comments__list">
+          {{#each comments}}
+            <li class="lt-comment {{#if official}}lt-comment--official{{/if}}"
+                id="{{anchor}}">
+              <div class="lt-comment__inner">
+                <div class="lt-comment__content">
+                  {{#if official}}
+                    <span class="lt-comment__official-heading">{{t 'official_comment'}}</span>
+                  {{/if}}
+    
+                  <div class="lt-entry-info lt-comment__header">
+                    <div class="lt-entry-info__avatar">
+                      <div class="lt-avatar {{#if author.agent}}lt-avatar--agent{{/if}}">
+                        <img class="lt-user-avatar lt-user-avatar--default"
+                              src="{{author.avatar_url}}" alt="Avatar">
+                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                          <use xlink:href="#icon-user"></use>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="lt-entry-info__content">
+                      <b class="author">
+                        {{#link 'user_profile' id=author.id}}
+                        {{author.name}}
+                        {{/link}}
+                      </b>
+                      <div class="lt-meta">
+                        {{date created_at timeago=true}}
+                        {{#if editor}}
+                          ({{t 'edited'}} {{date edited_at timeago=true}})
+                        {{/if}}
+                      </div>
+                      {{#if author.badges}}
+                        <div class="lt-pt-1 lt-d-flex lt-flex-wrap lt-gap-2 lt-align-items-center">
+                          {{#each author.badges}}
+                            {{#is category_slug "titles"}}
+                              <span class="lt-pill lt-pill--sm lt-pill--info community-badge community-badge-titles"
+                                    title="{{description}}" aria-label="{{name}}">
+                                {{#if icon_url}}
+                                  <img src="{{icon_url}}" alt="" />
+                                {{/if}}
+                                {{name}}
+                              </span>
+                            {{/is}}
+                          {{/each}}
+                      
+                          {{#each author.badges}}
+                            {{#is category_slug "achievements"}}
+                              {{#if icon_url}}
+                                <div class="community-badge community-badge-achievements">
+                                  <img src="{{icon_url}}" alt="{{name}}"
+                                      title="{{name}} | {{description}}" aria-label="{{name}}" />
+                                </div>
+                              {{/if}}
+                            {{/is}}
+                          {{/each}}
+                        </div>
+                      {{/if}}
+                    </div>
+                  </div>
+                   <div class="lt-comment__body rte {{#if ../settings.beautify_article}}rte-enhanced{{/if}}">
+                    {{body}}
+                  </div>
+                  <div class="lt-vote lt-d-print-none">
+                    {{#unless official}}
+                      {{#vote 'up' class='lt-btn lt-btn--icon lt-vote__control lt-vote__control--up' role='button' selected_class='lt-vote__control--voted'}}
+                        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="24" height="24">
+                          <use xlink:href="#hand-thumb-up"></use>
+                        </svg>
+                      {{/vote}}
+                      {{vote 'sum'}}
+                      {{#vote 'down' class='lt-btn lt-btn--icon lt-vote__control lt-vote__control--down' role='button' selected_class='lt-vote__control--voted'}}
+                        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="24" height="24">
+                          <use xlink:href="#hand-thumb-down"></use>
+                        </svg>
+                      {{/vote}}
+                    {{/unless}}
+                    {{#actions}}
+                      <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
+                        <use xlink:href="#icon-menu"></use>
+                      </svg>
+                    {{/actions}}
+                  </div>
+                </div>
+              </div>
+            </li>
+          {{/each}}
+        </ul>
+        {{pagination}}
+      {{/if}}
+        
+      <p class="lt-comments__callout lt-d-print-none">{{comment_callout}}</p>
+        
+      {{#form 'comment' class='lt-comment-form lt-d-print-none hbs-form'}}
+        <div class="lt-comment-form__avatar">
+          {{user_avatar class='lt-user-avatar lt-user-avatar--default'}}
+        </div>
+        <div class="lt-comment-form__body form-field">
+          {{wysiwyg 'body'}}
+        </div>
+        <div class="lt-comment-form__controls form-field">
+          {{checkbox 'official'}}
+          {{label 'official'}}
+        </div>
+        {{input type='submit'}}
+      {{/form}} 
+    </section>
+
+    <section class="cta-box lt-mb-8 {{#if settings.animate}}animate-on-scroll animate--slide-in{{/if}}">
+      <h2 class="cta-box__title h3">
+        {{t 'suggest_new_post'}}
+      </h2>
+      {{link 'new_post' role="button" class='lt-btn lt-btn--primary cta-box__btn' topic_id=topic.id}}
+    </section>
+  </div>
+</div>

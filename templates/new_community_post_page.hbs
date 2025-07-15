@@ -1,0 +1,75 @@
+<!-- <div class="lt-hero-unit lt-container lt-py-7 lt-mt-n8 lt-d-print-none">
+  <div class="lt-container-inner">
+    <div class="lt-search-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
+         <use xlink:href="#icon-search"></use>
+      </svg>
+      {{search instant=true submit=false placeholder=settings.search_placeholder}}
+    </div>
+  </div>
+</div> -->
+
+<div class="lt-breadcrumbs-wrapper lt-mb-8 lt-container lt-d-print-none">
+  <div class="lt-container-inner">{{breadcrumbs}}</div>
+</div>
+
+<div class="lt-container lt-pb-9" id="main-content">
+  <div class="lt-container-inner lt-container-inner--narrow" id="main-content">    
+    <h1 class="lt-new-post-title lt-fs-3 lt-fs-md-1">{{t 'what_is_your_post_about'}}</h1>
+    <div class="lt-new-post-form lt-mb-8">
+      {{#form 'post' class='new_community_post'}}
+        <div class="form-field">
+          {{#required 'title'}}
+            {{label 'title'}}
+            {{else}}
+              {{#label 'title'}}
+                {{t 'title_label'}}<span class="optional">({{t 'optional'}})</span>
+              {{/label}}
+          {{/required}}
+          {{input 'title' autofocus=true}}
+          {{#validate 'title'}}
+            <div class="notification notification-error notification-inline">
+              {{error 'title'}}
+            </div>
+          {{/validate}}
+        </div>
+      
+        {{suggestion_list class='searchbox'}}
+      
+        <div class="form-field">
+          {{#required 'details'}}
+            {{label 'details'}}
+            {{else}}
+              {{#label 'details'}}
+                {{t 'details_label'}}<span class="optional">({{t 'optional'}})</span>
+              {{/label}}
+          {{/required}}
+          {{wysiwyg 'details'}}
+          {{#validate 'details'}}
+            <div class="notification notification-error notification-inline">
+              {{error 'details'}}
+            </div>
+          {{/validate}}
+        </div>
+      
+        <div class="form-field">
+          {{#required 'topic'}}
+            {{label 'topic'}}
+            {{else}}
+              {{#label 'topic'}}
+                {{t 'topic_label'}}<span class="optional">({{t 'optional'}})</span>
+              {{/label}}
+          {{/required}}
+          {{select 'topic'}}
+          {{#validate 'topic'}}
+            <div class="notification notification-error notification-inline">
+              {{error 'topic'}}
+            </div>
+          {{/validate}}
+        </div>
+      
+        <footer>{{input type='submit'}}</footer>
+      {{/form}}
+    </div>
+  </div>
+</div>

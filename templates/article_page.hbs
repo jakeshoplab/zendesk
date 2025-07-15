@@ -1,0 +1,542 @@
+<!-- <div class="lt-hero-unit lt-container lt-py-7 lt-mt-n8 lt-d-print-none">
+  <div class="lt-container-inner">
+    <div class="lt-search-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
+         <use xlink:href="#icon-search"></use>
+      </svg>
+      {{search instant=true submit=false placeholder=settings.search_placeholder}}
+    </div>
+  </div>
+</div> -->
+
+<div class="lt-breadcrumbs-wrapper lt-mb-8 lt-container lt-d-print-none">
+  <div class="lt-container-inner">{{breadcrumbs}}</div>
+</div>
+
+<div class="lt-container lt-article-page">
+  <div class="lt-container-inner">
+    <div class="lt-article-container" id="main-content">
+      <div class="lt-article-container__column lt-article-container__sidenav">
+        <sidenav-component class="sidenav" force-open="(min-width: 1200px)" force-close="(max-width: 1199px)" > </sidenav-component>
+          {{#if settings.show_articles_in_section}}
+          <section class="lt-section-articles">
+            <details class="accordion" open>
+              <summary class="accordion__summary">
+                <span class="accordion__summary-wrapper">
+                {{t 'articles_in_section'}}
+                <svg class="lt-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <use xlink:href="#icon-chevron-down"></use>
+                  </svg>
+                </span>
+              </summary>
+              <div class="accordion__content">
+                <ul role="list" class="lt-article-list lt-section-articles__list">
+                  {{#each section.articles}}
+                    <li class="lt-section-articles__item">
+                      <a href="{{url}}"
+                        class="lt-section-articles__link {{#is id ../article.id}}is-active{{/is}}">{{title}}</a>
+                    </li>
+                  {{/each}}
+                {{#if section.more_articles}}
+                  <li>
+                    <a href="{{section.url}}" class="lt-btn lt-btn--tertiary">{{t 'see_more'}}</a>
+                  </li>
+                {{/if}}
+                </ul>
+
+              </div>
+            </details>
+          </section>
+        {{/if}}
+      </div>
+      <div class="lt-article-container__column lt-article-container__article">
+        <article class="lt-article lt-mb-6" data-article itemscope itemtype="http://schema.org/Article">
+          <header>
+            <h1 class="lt-article__title lt-mb-4" itemprop="name">
+              {{#if article.internal}}
+                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="32" height="32">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                </svg>
+                <span class="sr-only">{{t 'internal'}}</span>
+              {{/if}}
+              {{article.title}}
+            </h1>
+
+            <div class="lt-d-sm-flex lt-justify-content-between lt-mb-4 lt-align-items-start">
+              <div class="lt-mb-2 lt-me-sm-4">
+                <div class="lt-entry-info ">
+                  {{#if settings.show_article_author}}
+                    <div class="lt-entry-info__avatar">
+                      <div
+                          class="lt-avatar {{#if article.author.agent}}lt-avatar--agent{{/if}}">
+                        <img 
+                          class="lt-user-avatar lt-user-avatar--default"
+                          src="{{article.author.avatar_url}}" alt="" />
+                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                          <use xlink:href="#icon-user"></use>
+                        </svg>
+                      </div>
+                    </div>
+                  {{/if}}
+                  <div class="lt-entry-info__content">
+                    {{#if settings.show_article_author}}
+                      <b class="author">
+                        {{#link 'user_profile' id=article.author.id}}
+                        {{article.author.name}}
+                        {{/link}}
+                      </b>
+                    {{/if}}
+                    <div class="lt-meta">
+                      {{#is article.created_at article.edited_at}}
+                        {{date article.created_at timeago=true}}
+                      {{else}}
+                        {{t 'updated'}} {{date article.edited_at timeago=true}}
+                      {{/is}}
+                    </div>
+                    {{#if article.author.badges}}
+                      <div class="lt-pt-1 lt-d-flex lt-flex-wrap lt-gap-2 lt-align-items-center">
+                        {{#each article.author.badges}}
+                          {{#is category_slug "titles"}}
+                            <span class="lt-pill lt-pill--sm lt-pill--info community-badge community-badge-titles" title="{{description}}"
+                                  aria-label="{{name}}">
+                              {{#if icon_url}}
+                                <img src="{{icon_url}}" alt="" />
+                              {{/if}}
+                              {{name}}
+                            </span>
+                          {{/is}}
+                        {{/each}}
+                        
+                        {{#each article.author.badges}}
+                          {{#is category_slug "achievements"}}
+                            {{#if icon_url}}
+                              <div class="community-badge community-badge-achievements">
+                                <img src="{{icon_url}}" alt="{{name}}"
+                                    title="{{name}} | {{description}}" aria-label="{{name}}" />
+                              </div>
+                            {{/if}}
+                          {{/is}}
+                        {{/each}}
+                      </div>
+                    {{/if}}
+                  </div>
+                </div>
+              </div>
+
+              <div class="lt-article-subscribe lt-d-flex lt-d-print-none lt-align-items-center">
+                {{#if settings.show_print_article}}
+                  <button class="lt-btn lt-btn--icon" onclick="javascript:print();">
+                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="24" height="24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5zm-3 0h.008v.008H15V10.5z" />
+                    </svg>
+                  </button>
+                {{/if}}
+                {{#if settings.show_article_sharing}}
+                  <div class="lt-dropdown" aria-haspopup="true">
+                    <button class="lt-btn lt-btn--icon lt-dropdown-toggle">
+                      <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="24" height="24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25H15m0-3l-3-3m0 0l-3 3m3-3V15" />
+                      </svg>
+                      <span class="sr-only">{{t 'share'}}</span>
+                    </button>
+                    <div class="lt-dropdown-menu lt-px-4">
+                      {{share}}
+                    </div>
+                  </div>
+                {{/if}}
+
+                {{#if settings.show_follow_article}}
+                  {{subscribe}}
+                {{/if}}
+              </div>
+            </div>
+          </header>
+
+          <div class="lt-article__body rte {{#if settings.beautify_article}}rte-enhanced{{/if}}" itemprop="articleBody">
+            {{article.body}}
+          </div>
+          {{#if (compare article.content_tags.length ">" 0)}}
+            <section class="content-tags lt-flow">
+              <h4 class="h5">{{t 'content_tags_label'}}</h4>
+              <ul role="list" class="lt-list-unstyled lt-d-flex lt-align-items-center lt-flex-wrap">
+                {{#each article.content_tags}}
+                  <li class="lt-me-2 lt-mb-2" data-content-tag-id="{{id}}">
+                    {{#link "search_result" class="lt-pill lt-pill--info"  content_tag_id=id}}
+                      {{name}}
+                    {{/link}}
+                  </li>
+                {{/each}}
+              </ul>
+            </section>
+          {{/if}}
+          {{#if attachments}}
+            <ul role="list" class="lt-list-unstyled lt-attachment-list lt-mb-4">
+              {{#each attachments}}
+                <li class="lt-attachment-list__item">
+                  <svg class="lt-attachment-list__icon"  aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="16" height="16">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
+                  </svg>
+                  <a href="{{url}}" target="_blank">{{name}}</a>
+                  <div class="lt-meta">({{size}})</div>
+                </li>
+              {{/each}}
+            </ul>
+          {{/if}}
+
+          <div data-prevnext></div>
+        </article>
+
+        {{#with article}}
+          <footer class="lt-article-vote lt-d-print-none lt-mb-6 lt-d-flex lt-align-items-center lt-flex-column lt-flow lt-text-center">
+            <div class="h5 lt-article-vote__question">{{t 'was_this_article_helpful'}}</div>
+            <div class="lt-article-vote__controls">
+              {{vote 'up' class='lt-btn lt-btn--secondary lt-article-vote__item lt-article-vote__item--up' selected_class='lt-article-vote__item--voted' role='button'}}
+              {{vote 'down' class='lt-btn lt-btn--secondary lt-article-vote__item lt-article-vote__item--down' selected_class='lt-article-vote__item--voted' role='button'}}
+            </div>
+            {{vote 'label' class='lt-article-vote__label'}}
+          </footer>
+        {{/with}}
+
+        {{!-- Article Comments --}}
+
+        {{#if settings.show_article_comments}}
+          <section class="lt-comments" itemscope itemtype="http://schema.org/UserComments" id="article-comments">
+            <header class="lt-comments__header ">
+              <h2 class="h3 lt-mb-3">{{t 'comments'}}</h2>
+              <div class="lt-comment-sorter lt-mb-5 lt-d-print-none lt-d-md-flex lt-align-items-center lt-justify-content-between">
+                <div class="lt-mb-4 lt-pe-md-4">
+                  {{t 'comments_count' count=article.comment_count}}
+                </div>
+          
+                {{#if comments}}
+                  <div class="lt-dropdown lt-mb-4">
+                    <button
+                      class="lt-dropdown-toggle"
+                      aria-haspopup="true">
+                      <span>{{t 'sort_by'}}</span>
+                      <svg class="lt-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <use xlink:href="#icon-chevron-down"></use>
+                      </svg>
+                    </button>
+                    <span class="lt-dropdown-menu lt-dropdown-menu-end" role="menu">
+                      {{#each comment_sorters}}
+                        <a 
+                          aria-selected="{{selected}}" 
+                          href="{{url}}"
+                          role="menuitem">{{name}}</a>
+                      {{/each}}
+                    </span>
+                  </div>
+                {{/if}}
+              </div>
+            </header>
+          
+            {{#if comments}}
+              <ul role="list" class="lt-comments__list" id="comments">
+                {{#each comments}}
+                  <li class="lt-comment" id="{{anchor}}">
+                    <div class="lt-comment__inner">
+                      <div class="lt-comment__content">
+                        <div class="lt-entry-info lt-comment__header">
+                          <div class="lt-entry-info__avatar">
+                            <div class="lt-avatar {{#if author.agent}}lt-avatar--agent{{/if}}">
+                              <img class="lt-user-avatar lt-user-avatar--default" src="{{author.avatar_url}}" alt="Avatar">
+                              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <use xlink:href="#icon-user"></use>
+                              </svg>
+                            </div>
+                          </div>
+                          <div class="lt-entry-info__content">
+                            <b class="author">
+                              {{#link 'user_profile' id=author.id}}
+                              {{author.name}}
+                              {{/link}}
+                            </b>
+
+                            <div class="lt-meta">
+                              {{date created_at timeago=true}}
+                              {{#if editor}}
+                                ({{t 'edited'}} {{date edited_at timeago=true}})
+                              {{/if}}
+                            </div>
+
+                            {{#if author.badges}}
+                              <div class="lt-pt-1 lt-d-flex lt-flex-wrap lt-gap-2 lt-align-items-center">
+                                {{#each author.badges}}
+                                  {{#is category_slug "titles"}}
+                                    <span class="lt-pill lt-pill--sm lt-pill--info community-badge community-badge-titles"
+                                          title="{{description}}" aria-label="{{name}}">
+                                      {{#if icon_url}}
+                                        <img src="{{icon_url}}" alt="" />
+                                      {{/if}}
+                                      {{name}}
+                                    </span>
+                                  {{/is}}
+                                {{/each}}
+                            
+                                {{#each author.badges}}
+                                  {{#is category_slug "achievements"}}
+                                    {{#if icon_url}}
+                                      <div class="community-badge community-badge-achievements">
+                                        <img src="{{icon_url}}" alt="{{name}}"
+                                            title="{{name}} | {{description}}" aria-label="{{name}}" />
+                                      </div>
+                                    {{/if}}
+                                  {{/is}}
+                                {{/each}}
+                              </div>
+                            {{/if}}
+                          </div>
+                        </div>
+          
+                        <div class="lt-comment__body rte {{#if ../settings.beautify_article}}rte-enhanced{{/if}}">
+                          {{body}}
+                        </div>
+          
+                        {{#if pending}}
+                          <span
+                                class="lt-status-label lt-status-label--pending">{{t 'pending_approval'}}</span>
+                        {{/if}}
+          
+                        {{#with ticket}}
+                          <a class="lt-status-label lt-status-label--with-ticket" href="{{url}}" target="_zendesk_lotus">
+                            {{t 'request'}} {{id}}
+                          </a>
+                        {{/with}}
+                      </div>
+          
+                      <div class="lt-vote lt-d-print-none">
+                        {{#unless official}}
+                          {{#vote 'up' class='lt-btn lt-btn--icon lt-vote__control lt-vote__control--up' role='button' selected_class='lt-vote__control--voted'}}
+                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="24" height="24">
+                              <use xlink:href="#hand-thumb-up"></use>
+                            </svg>
+                          {{/vote}}
+                          {{vote 'sum'}}
+                          {{#vote 'down' class='lt-btn lt-btn--icon lt-vote__control lt-vote__control--down' role='button' selected_class='lt-vote__control--voted'}}
+                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="24" height="24">
+                              <use xlink:href="#hand-thumb-down"></use>
+                            </svg>
+                          {{/vote}}
+                        {{/unless}}
+                        {{#actions}}
+                          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
+                            <use xlink:href="#icon-menu"></use>
+                          </svg>
+                        {{/actions}}
+                      </div>
+                    </div>
+                  </li>
+                {{/each}}
+              </ul>
+          
+              {{pagination}}
+            {{/if}}
+          
+            <p class="lt-comments__callout lt-d-print-none">{{comment_callout}}</p>
+          
+            {{#form 'comment' class='lt-comment-form lt-d-print-none hbs-form'}}
+              <div class="lt-comment-form__avatar">
+                <div class="lt-avatar avatar--comment">
+                  {{user_avatar class='lt-user-avatar lt-user-avatar--default'}}
+                </div>
+              </div>
+              <div class="lt-comment-form__body">
+                {{wysiwyg 'body'}}
+              </div>
+              <div class="lt-comment-form__controls">
+                {{input type='submit' class='lt-btn lt-btn--primary'}}
+              </div>
+            {{/form}}
+          </section>
+        {{/if}}
+      </div>
+      <div class="lt-article-container__column lt-article-container__sidebar lt-d-print-none">
+        <div data-toc='{"mobileBreakpoint": 1199}'></div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{{#if settings.show_article_boxes}}
+  <div class="lt-container lt-mb-9" id="contact-boxes">
+    <div class="lt-container-inner">
+      <h2>
+        {{#if settings.toggle_translations}}
+          {{dc settings.contact_boxes_title}}
+        {{else}}
+          {{settings.contact_boxes_title}}
+        {{/if}}
+      </h2>
+
+      <ul role="list" class="lt-row lt-list-unstyled lt-row-cols-sm-{{settings.contact_boxes_per_line}} lt-gy-5">
+        {{#if settings.contact_box_1_toggle}}
+          <li class="lt-card-wrapper">
+            <div class="lt-card lt-card--border lt-flow">
+              <div class="lt-card__image">
+                <img class="lt-contact-box__icon" data-svg
+                  src="{{settings.contact_box_1_icon}}" aria-hidden="true" alt="">
+              </div>
+              <div class="lt-card__content lt-flow">
+                <h3 class="lt-card__heading h5">
+                  {{#if settings.contact_box_1_link_toggle}}
+                    <a class="lt-card__link" href="{{#if settings.toggle_translations}}
+                        {{dc settings.contact_box_1_url}}
+                      {{else}}
+                        {{settings.contact_box_1_url}}
+                      {{/if}}">
+                        {{#if settings.toggle_translations}}
+                          {{dc settings.contact_box_1_title}}
+                        {{else}}
+                          {{settings.contact_box_1_title}}
+                        {{/if}}
+                    </a>
+                  {{else}}
+                    {{#if settings.toggle_translations}}
+                      {{dc settings.contact_box_1_title}}
+                    {{else}}
+                      {{settings.contact_box_1_title}}
+                    {{/if}}
+                  {{/if}}
+                </h3>
+                <p class="lt-card__text lt-text-secondary">
+                  {{#if settings.toggle_translations}}
+                    {{dc settings.contact_box_1_text}}
+                  {{else}}
+                    {{settings.contact_box_1_text}}
+                  {{/if}}
+                </p> 
+              </div>
+            </div>
+          </li>
+        {{/if}}
+
+        {{#if settings.contact_box_2_toggle}}
+          <li class="lt-card-wrapper">
+            <div class="lt-card lt-card--border lt-flow">
+              <div class="lt-card__image">
+                <img class="lt-contact-box__icon"data-svg
+                  src="{{settings.contact_box_2_icon}}" aria-hidden="true" alt="">
+              </div>
+              <div class="lt-card__content lt-flow">
+                <h3 class="lt-card__heading h5">
+                  {{#if settings.contact_box_2_link_toggle}}
+                    <a class="lt-card__link" href="{{#if settings.toggle_translations}}
+                        {{dc settings.contact_box_2_url}}
+                      {{else}}
+                        {{settings.contact_box_2_url}}
+                      {{/if}}">
+                        {{#if settings.toggle_translations}}
+                          {{dc settings.contact_box_2_title}}
+                        {{else}}
+                          {{settings.contact_box_2_title}}
+                        {{/if}}
+                    </a>
+                  {{else}}
+                    {{#if settings.toggle_translations}}
+                      {{dc settings.contact_box_2_title}}
+                    {{else}}
+                      {{settings.contact_box_2_title}}
+                    {{/if}}
+                  {{/if}}
+                </h3>
+                <p class="lt-card__text lt-text-secondary">
+                  {{#if settings.toggle_translations}}
+                    {{dc settings.contact_box_2_text}}
+                  {{else}}
+                    {{settings.contact_box_2_text}}
+                  {{/if}}
+                </p> 
+              </div>
+            </div>
+          </li>
+        {{/if}}
+
+        {{#if settings.contact_box_3_toggle}}
+          <li class="lt-card-wrapper">
+            <div class="lt-card lt-card--border lt-flow">
+              <div class="lt-card__image">
+                <img class="lt-contact-box__icon"data-svg
+                  src="{{settings.contact_box_3_icon}}" aria-hidden="true" alt="">
+              </div>
+              <div class="lt-card__content lt-flow">
+                <h3 class="lt-card__heading h5">
+                  {{#if settings.contact_box_3_link_toggle}}
+                    <a class="lt-card__link" href="{{#if settings.toggle_translations}}
+                        {{dc settings.contact_box_3_url}}
+                      {{else}}
+                        {{settings.contact_box_3_url}}
+                      {{/if}}">
+                        {{#if settings.toggle_translations}}
+                          {{dc settings.contact_box_3_title}}
+                        {{else}}
+                          {{settings.contact_box_3_title}}
+                        {{/if}}
+                    </a>
+                  {{else}}
+                    {{#if settings.toggle_translations}}
+                      {{dc settings.contact_box_3_title}}
+                    {{else}}
+                      {{settings.contact_box_3_title}}
+                    {{/if}}
+                  {{/if}}
+                </h3>
+                <p class="lt-card__text lt-text-secondary">
+                  {{#if settings.toggle_translations}}
+                    {{dc settings.contact_box_3_text}}
+                  {{else}}
+                    {{settings.contact_box_3_text}}
+                  {{/if}}
+                </p> 
+              </div>
+            </div>
+          </li>
+        {{/if}}
+
+        {{#if settings.contact_box_4_toggle}}
+          <li class="lt-card-wrapper">
+            <div class="lt-card lt-card--border lt-flow">
+              <div class="lt-card__image">
+                <img class="lt-contact-box__icon" data-svg
+                  src="{{settings.contact_box_4_icon}}" aria-hidden="true" alt="">
+              </div>
+              <div class="lt-card__content lt-flow">
+                <h3 class="lt-card__heading h5">
+                  {{#if settings.contact_box_4_link_toggle}}
+                    <a class="lt-card__link" href="{{#if settings.toggle_translations}}
+                        {{dc settings.contact_box_4_url}}
+                      {{else}}
+                        {{settings.contact_box_4_url}}
+                      {{/if}}">
+                        {{#if settings.toggle_translations}}
+                          {{dc settings.contact_box_4_title}}
+                        {{else}}
+                          {{settings.contact_box_4_title}}
+                        {{/if}}
+                    </a>
+                  {{else}}
+                    {{#if settings.toggle_translations}}
+                      {{dc settings.contact_box_4_title}}
+                    {{else}}
+                      {{settings.contact_box_4_title}}
+                    {{/if}}
+                  {{/if}}
+                </h3>
+                <p class="lt-card__text lt-text-secondary">
+                  {{#if settings.toggle_translations}}
+                    {{dc settings.contact_box_4_text}}
+                  {{else}}
+                    {{settings.contact_box_4_text}}
+                  {{/if}}
+                </p> 
+              </div>
+            </div>
+          </li>
+        {{/if}}
+
+      </ul>
+    </div>
+  </div>
+{{/if}}

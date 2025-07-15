@@ -1,0 +1,65 @@
+<!-- <div class="lt-hero-unit lt-container lt-py-7 lt-mt-n8 lt-d-print-none">
+  <div class="lt-container-inner">
+    <div class="lt-search-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
+         <use xlink:href="#icon-search"></use>
+      </svg>
+      {{search instant=true submit=false placeholder=settings.search_placeholder}}
+    </div>
+  </div>
+</div> -->
+
+<div class="lt-breadcrumbs-wrapper lt-mb-8 lt-container lt-d-print-none">
+  <div class="lt-container-inner">{{breadcrumbs}}</div>
+</div>
+
+<div class="lt-container category-page">
+  <div class="lt-container-inner">
+    <div class="lt-category-tree-item"  id="main-content">
+      <div class="lt-mb-5 lt-flow">
+        <h1 class="lt-category-tree-item__title lt-mb-0">
+          {{category.name}}
+        </h1>
+        {{#if category.description}}
+          <div>{{category.description}}</div>
+        {{/if}}
+      </div>
+      <div class="lt-category-tree-item__sections lt-row lt-row-cols-md-3 lt-d-flex lt-flex-column">
+        {{#each sections}}
+          <section class="section lt-mb-5">
+            <h2 class="lt-mb-0 h3">
+              <a class="lt-section-link lt-underlined-link font-w-500" href="{{url}}">{{name}}</a>
+            </h2>
+<!--               <ul role="list" class="lt-article-list">
+                  {{#each sections}}
+                   <li class="lt-article-list-item">
+                    <a class="lt-article-list-item__link" href="{{url}}"><b>{{name}}</b></a>
+                  </li>
+                  {{/each}}
+
+              {{#if articles}}
+                {{#each articles}}
+                  <li class="lt-article-list-item {{#if promoted}}lt-article-list-item--is-promoted{{/if}}">
+                    <a class="lt-article-list-item__link" href="{{url}}">{{title}}</a>
+                    {{#if promoted}}
+                      <svg class="lt-star-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                      </svg>
+                    {{/if}}
+                  </li>
+                {{/each}}
+                {{#if more_articles}}
+                  <li class="lt-article-list-item">
+                    <a href="{{url}}" class="lt-underlined-link">
+                      {{t 'show_all_articles' count=article_count}}
+                    </a>
+                  </li>
+                {{/if}}
+            {{/if}}
+              </ul> -->
+          </section>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div>

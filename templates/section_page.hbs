@@ -1,0 +1,72 @@
+<!-- <div class="lt-hero-unit lt-container lt-py-7 lt-mt-n8 lt-d-print-none">
+  <div class="lt-container-inner">
+    <div class="lt-search-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
+         <use xlink:href="#icon-search"></use>
+      </svg>
+      {{search instant=true submit=false placeholder=settings.search_placeholder}}
+      </div>
+  </div>
+</div> -->
+
+<div class="lt-breadcrumbs-wrapper lt-mb-8 lt-container lt-d-print-none">
+  <div class="lt-container-inner">{{breadcrumbs}}</div>
+</div>
+
+<div class="lt-container section-page lt-pb-8">
+  <div class="lt-container-inner">
+    <div class="lt-header lt-d-md-flex lt-justify-content-between" id="main-content">
+      <div class="lt-me-4 lt-mb-5 lt-flow">
+        <h1>
+          {{section.name}}
+        </h1>
+        {{#if section.description}}
+          <div>{{section.description}}</div>
+        {{/if}}
+      </div>
+
+      {{#if settings.show_follow_section}}
+        <div class="lt-section-subscribe lt-pt-3 lt-pt-md-0">
+          {{subscribe}}
+        </div>
+      {{/if}}
+    </div>
+
+    {{#if section.sections}}
+      <div class="lt-mb-6">
+        <ul role="list" class="lt-list-unstyled lt-row lt-gy-5 lt-row-cols-md-{{settings.categories_per_line}} lt-mb-4" id="section-list" >
+          {{#each section.sections}}
+            <li class="lt-card-wrapper">
+              <div class="lt-card lt-flow lt-block-list-item {{#if ../settings.animate}}animate-on-scroll animate--slide-in" data-cascade style="--animation-order: {{ @index }};{{/if}}">
+                <div class="lt-card__content lt-flow">
+                  <h3 class="lt-card__heading h4">
+                    <a class="lt-card__link lt-block-list-item__link" href="{{url}}">{{name}}</a>
+                  </h3>
+                  <div class="lt-card__text">{{description}}</div> 
+                </div>
+              </div>
+            </li>
+          {{/each}}
+        </ul>
+        {{pagination "section.sections"}}
+      </div>
+    {{/if}}
+
+    {{#if section.articles}}
+      <ul role="list" class="lt-article-list lt-mb-4">
+        {{#each section.articles}}
+          <li class="lt-article-list-item {{#if promoted}}lt-article-list-item--is-promoted{{/if}}">
+            <a class="lt-article-list-item__link" href="{{url}}">{{title}}</a>
+            {{#if promoted}}
+              <svg class="lt-star-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+              </svg>
+            {{/if}}
+          </li>
+        {{/each}}
+      </ul>
+    {{/if}}
+
+    {{pagination "section.articles"}}
+  </div>
+</div>

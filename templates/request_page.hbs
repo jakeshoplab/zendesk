@@ -1,0 +1,197 @@
+<!-- <div class="lt-hero-unit lt-container lt-py-7 lt-mt-n8 lt-d-print-none">
+  <div class="lt-container-inner">
+    <div class="lt-search-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
+         <use xlink:href="#icon-search"></use>
+      </svg>
+      {{search instant=true submit=false placeholder=settings.search_placeholder}}
+    </div>
+  </div>
+</div> -->
+
+<div class="lt-breadcrumbs-wrapper lt-mb-8 lt-container lt-d-print-none">
+  <div class="lt-container-inner">{{breadcrumbs}}</div>
+</div>
+
+<div class="lt-container lt-request-page lt-pb-8">
+  <div class="lt-container-inner">
+    <div class="lt-row" id="main-content">
+      <div class="lt-col-md-8">
+        <section class="request-column">
+          {{satisfaction}}
+
+          <p class="lt-request-id">{{t 'request' request_number=request.id}}</p>
+
+          <h1 class="lt-request-subject lt-fs-3 lt-fs-md-1">{{request.subject}}</h1>
+
+          <div class="lt-comments" id="comments" itemscope itemtype="http://schema.org/UserComments">
+
+            <ul role="list" class="lt-comments__list">
+              {{#each comments}}
+              <li class="lt-comment" id="{{anchor}}">
+                <div class="lt-comment__inner">
+                  <div class="lt-comment__content">
+                    <div class="lt-entry-info lt-comment__header">
+                      <div class="lt-entry-info__avatar">
+                        <div class="lt-avatar {{#if author.agent}}lt-avatar--agent{{/if}}">
+                          <img class="lt-user-avatar lt-user-avatar--default" src="{{author.avatar_url}}" alt="Avatar">
+                          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <use xlink:href="#icon-user"></use>
+                          </svg>
+                        </div>
+                      </div>
+                      <div class="lt-entry-info__content">
+                        <b class="author">
+                          {{#link 'user_profile' id=author.id}}
+                          {{author.name}}
+                          {{/link}}
+                        </b>
+                        <div class="lt-meta">
+                          {{date created_at format="medium"}}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="lt-comment__body rte {{#if ../settings.beautify_article}}rte-enhanced{{/if}}">{{body}}</div>
+                      {{#if attachments}}
+                        <ul role="list" class="lt-list-unstyled lt-attachment-list">
+                          {{#each attachments}}
+                          <li class="lt-attachment-list__item">
+                            <svg class="lt-attachment-list__icon"  aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="16" height="16">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
+                            </svg>
+                            <a href="{{url}}" target="_blank">{{name}}</a>
+                            <div class="lt-meta">({{size}})</div>
+                          </li>
+                          {{/each}}
+                        </ul>
+                      {{/if}}
+                  </div>
+                </div>
+              </li>
+              {{/each}}
+            </ul>
+
+            {{pagination}}
+
+          </div>
+
+          <p class="request-follow-up lt-d-print-none">{{comment_callout}}</p>
+
+          {{#form 'comment' class='lt-comment-form hbs-form lt-d-print-none'}}
+          <div class="lt-comment-form__avatar">
+            <div class="lt-avatar avatar--comment">
+              {{user_avatar class='lt-user-avatar lt-user-avatar--default'}}
+            </div>
+          </div>
+          <div class="lt-comment-form__body">
+            {{#if help_center.request_ccs_enabled}}
+            <div class="lt-comment-form__ccs">
+              {{token_field 'ccs'}}
+            </div>
+            {{/if}}
+            {{wysiwyg 'body' rows='4'}}
+          </div>
+          <div class="lt-comment-form__attachments">
+            {{upload}}
+          </div>
+          <div class="lt-comment-form__controls">
+            <div class="lt-comment-form__mark-as-solved">
+              {{checkbox 'mark_as_solved'}}
+              {{label 'mark_as_solved'}}
+            </div>
+            {{input type='submit'}}
+          </div>
+          {{/form}}
+        </section>
+      </div>
+      <div class="lt-col-md-4">
+        <div class="lt-request-sidebar lt-flow">
+          <p><b>{{t 'submitted_by' requester_name=request.requester.name}}</b></p>
+
+          <dl class="request-details lt-flow" style="--flow-space: 0.75rem;">
+            {{#form 'organization' id='request-organization' class='hbs-form'}}
+              <dt>{{t 'organization'}}</dt>
+              <dd>{{select 'organization'}}</dd>
+            {{/form}}
+
+            {{#if group}}
+            <dt>{{t 'group'}}</dt>
+            <dd>
+              <span>{{group.name}}</span>
+            </dd>
+            {{/if}}
+
+            <dt>{{t 'status'}}</dt>
+            <dd>
+              <span class="lt-pill lt-pill--sm lt-pill--{{request.status}}" title="{{request.status_description}}">
+                {{request.status_name}}
+              </span>
+            </dd>
+
+            {{#if request.type}}
+            <dt>{{t 'type'}}</dt>
+            <dd>
+              <span>
+                {{request.type_name}}
+                {{#is request.type 'task'}}{{t 'task_due_date' due_date=request.due_date}}{{/is}}
+              </span>
+            </dd>
+            {{/if}}
+
+            {{#if request.priority}}
+            <dt>{{t 'priority'}}</dt>
+            <dd>
+              <span>{{request.priority_name}}</span>
+            </dd>
+            {{/if}}
+
+            {{#if assignee}}
+            <dt>{{t 'assignee'}}</dt>
+            <dd>
+              <span>{{assignee.name}}</span>
+            </dd>
+            {{/if}}
+
+            {{#each custom_fields}}
+            <dt>{{title}}</dt>
+            <dd>
+              <span>{{value}}</span>
+            </dd>
+            {{/each}}
+
+            {{#if attachments}}
+            <ul role="list" class="lt-list-unstyled lt-attachment-list">
+              {{#each attachments}}
+              <li class="lt-attachment-list__item">
+                  <svg class="lt-attachment-list__icon"  aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="16" height="16">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
+                  </svg>
+                <a href="{{url}}" target="_blank">{{name}}</a>
+                <div class="lt-meta">({{size}})</div>
+              </li>
+              {{/each}}
+            </ul>
+            {{/if}}
+
+            {{#if collaborators}}
+            <dt>{{t 'ccs'}}</dt>
+            <dd>
+              <span>{{t 'ccs_description'}}</span>
+              <ul role="list" class="lt-list-unstyled">
+                {{#each collaborators}}
+                <li>{{name}}</li>
+                {{/each}}
+              </ul>
+            </dd>
+            {{/if}}
+          </dl>
+        </div>
+
+        <p class="lt-d-print-none">
+          {{link 'new_request' class='lt-btn lt-btn--secondary' role='button'}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

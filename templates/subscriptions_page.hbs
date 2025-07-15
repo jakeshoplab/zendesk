@@ -1,0 +1,50 @@
+<!-- <div class="lt-hero-unit lt-container lt-py-7 lt-mt-n8 lt-d-print-none">
+  <div class="lt-container-inner">
+    <div class="lt-search-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
+         <use xlink:href="#icon-search"></use>
+      </svg>
+      {{search instant=true submit=false placeholder=settings.search_placeholder}}
+    </div>
+  </div>
+</div> -->
+
+<div class="lt-breadcrumbs-wrapper lt-mb-8 lt-container lt-d-print-none">
+  <div class="lt-container-inner">{{breadcrumbs}}</div>
+</div>
+
+<div class="lt-container my-activities-page lt-pb-8">
+  <div class="lt-container-inner">
+    <h1 class="lt-header lt-fs-3 lt-fs-md-1">{{t 'subscriptions' }}</h1>
+
+    {{#if subscriptions}}
+      <table class="lt-my-activities-items" id="main-content">
+        <thead class="lt-my-activities-items__head">
+          <tr class="lt-my-activities-items__row">
+            <td class="lt-my-activities-items__col">{{t 'title'}}</td>
+            <td class="lt-my-activities-items__col">{{t 'type'}}</td>
+            <td class="lt-my-activities-items__col">{{t 'subscription'}}</td>
+            <td class="lt-my-activities-items__col">&nbsp;</td>
+          </tr>
+        </thead>
+        <tbody class="lt-my-activities-items__body">
+          {{#each subscriptions}}
+            <tr class="lt-my-activities-items__row lt-my-activities-item">
+              <td class="lt-my-activities-items__col">
+                <a class="lt-my-activities-item__title" href="{{url}}">
+                  {{excerpt title characters=60}}
+                </a>
+              </td>
+              <td class="lt-my-activities-items__col lt-my-activities-item__meta">{{name}}</td>
+              <td class="lt-my-activities-items__col lt-my-activities-item__meta">{{following}}</td>
+              <td class="lt-my-activities-items__col lt-my-activities-item__meta lt-subscriptions-subscribe">{{subscribe}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      {{pagination}}
+    {{else}}
+      <p>{{t 'not_following'}}</p>
+    {{/if}}
+  </div>
+</div>

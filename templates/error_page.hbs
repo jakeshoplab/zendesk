@@ -1,0 +1,53 @@
+<!-- <div class="lt-hero-unit lt-container lt-py-7 lt-mt-n8 lt-d-print-none">
+  <div class="lt-container-inner">
+    <div class="lt-search-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
+         <use xlink:href="#icon-search"></use>
+      </svg>
+      {{search instant=true submit=false placeholder=settings.search_placeholder}}
+    </div>
+  </div>
+</div> -->
+<div class="lt-container lt-pt-8 lt-text-center">
+  <div class="lt-container-innner">
+    {{#is error 'unauthorized'}}
+      <h1 class="lt-fs-3 lt-fs-md-1">{{link 'sign_in'}}</h1>
+    {{/is}}
+    {{#is error 'forbidden'}}
+      <h1 class="lt-fs-3 lt-fs-md-1">{{t 'not_authorized'}}</h1>
+    {{/is}}
+    {{#is error 'not_found'}}
+      <h1 class="lt-fs-3 lt-fs-md-1">{{t 'nonexistent_page'}}</h1>
+      <p>{{t 'mistyped_address_or_moved_page'}}</p>
+    {{/is}}
+  </div>
+</div>
+
+<div class="lt-container lt-error-page lt-pb-9 lt-mx-auto lt-text-center" id="main-content">
+  <div class="lt-container-inner">
+    {{#is error 'not_found'}}
+    <div class="lt-error-page__articles lt-p-4 lt-pb-3 lt-mb-4 lt-mt-3 ">
+      <div class="h4 lt-mb-3 ">
+        {{#if settings.toggle_translations}}
+          {{dc settings.error_page_articles_title}}
+        {{else}}
+          {{settings.error_page_articles_title}}
+        {{/if}}
+      </div>
+    
+      <ul role="list" class="lt-list-unstyled lt-mt-0 lt-mb-0">
+        {{#each promoted_articles}}
+          <li class="lt-promoted-articles-item lt-mb-2">
+            <a class="lt-promoted-articles-item__title " href="{{url}}">{{title}}</a>
+        {{/each}}
+        </li>
+      </ul>
+    </div>
+    {{/is}}
+    
+      {{#link 'help_center' class='lt-btn lt-btn--secondary lt-me-sm-2 lt-mb-4'}}
+        {{t 'back_to_homepage'}}
+      {{/link}}
+      {{link 'new_request' class='lt-btn lt-btn--primary lt-mb-4'}}
+  </div>
+</div>
