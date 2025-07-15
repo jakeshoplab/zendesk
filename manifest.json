@@ -16,7 +16,7 @@
     }
   },
   "settings": [
-    "brand_color": {
+    {
       "type": "color",
       "label": "Brand color",
       "default": "#000000"
