@@ -1,4 +1,6 @@
 {
+  "name": "My Sample Theme",
+  "defaultLocale": "en",
   "locales": {
     "en": {
       "welcome_message": "Welcome to our Help Center!",
