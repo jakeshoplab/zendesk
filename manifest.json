@@ -1,0 +1,23 @@
+{
+  "name": "My Sample Theme",
+  "author": "Your Name",
+  "defaultLocale": "en",
+  "version": "1.0.0",
+  "locales": {
+    "en": {
+      "welcome_message": "Welcome to our Help Center!",
+      "search_placeholder": "Search for articles..."
+    },
+    "fr": {
+      "welcome_message": "Bienvenue dans notre centre d'aide !",
+      "search_placeholder": "Rechercher des articles..."
+    }
+  },
+  "settings": {
+    "brand_color": {
+      "type": "color",
+      "label": "Brand color",
+      "default": "#000000"
+    }
+  }
+}
