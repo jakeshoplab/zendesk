@@ -1,27 +1,2280 @@
 {
-  "name": "My Sample Theme",
-  "author": "Your Name",
-  "defaultLocale": "en",
-  "version": "1.0.0",
-  "api_version": 1,
-  "description": "A sample theme for Zendesk Help Center",
-  "locales": {
-    "en": {
-      "welcome_message": "Welcome to our Help Center!",
-      "search_placeholder": "Search for articles...",
-      "sample_text": "test"
-    },
-    "fr": {
-      "welcome_message": "Bienvenue dans notre centre d'aide !",
-      "search_placeholder": "Rechercher des articles...",
-      "sample_text": "test"
-    }
-  },
+  "name": "[SHOPLAB] V3 PERGOLUX Theme (Flatrock)",
+  "author": "Lotus Themes",
+  "version": "10.1.1",
+  "api_version": 4,
+  "default_locale": "en-us",
   "settings": [
     {
-      "type": "color",
-      "label": "Brand color",
-      "default": "#000000"
+      "label": "Translations",
+      "variables": [
+        {
+          "identifier": "toggle_translations",
+          "type": "checkbox",
+          "description": "Enable this option to use dynamic content placeholders in the settings",
+          "label": "Use dynamic content translations",
+          "value": false
+        }
+      ]
+    },
+    {
+      "label": "Animations",
+      "variables": [
+        {
+          "identifier": "animate",
+          "type": "checkbox",
+          "description": "Play the slide-in and fade-in animations as page elements appear",
+          "label": "Enable animations",
+          "value": true
+        }
+      ]
+    },
+    {
+      "label": "Logo",
+      "variables": [
+        {
+          "identifier": "logo",
+          "type": "file",
+          "description": "Company logo",
+          "label": "Logo"
+        },
+        {
+          "identifier": "logo_height",
+          "type": "text",
+          "description": "Height of the logo",
+          "label": "Logo height",
+          "value": "24px"
+        },
+        {
+          "identifier": "favicon",
+          "type": "file",
+          "description": "Icon displayed in the address bar of your browser",
+          "label": "Favicon"
+        }
+      ]
+    },
+    {
+      "label": "Colors",
+      "variables": [
+        {
+          "identifier": "color_bg_body",
+          "type": "color",
+          "description": "Background color of your Help Center",
+          "label": "Primary background color",
+          "value": "#fff"
+        },
+        {
+          "identifier": "color_bg_secondary",
+          "type": "color",
+          "description": "Used for menus, search filters, request filters, etc.",
+          "label": "Secondary background color",
+          "value": "#F2F2F2"
+        },
+        {
+          "identifier": "color_bg_cta",
+          "type": "color",
+          "description": "Used for backgrounds of CTA banners. Ex.: Submit a request on the homepage",
+          "label": "CTA background color",
+          "value": "rgba(232, 241, 248, 1)"
+        },
+        {
+          "identifier": "color_brand_primary",
+          "type": "color",
+          "description": "Primary color for major navigational elements and buttons",
+          "label": "Primary color",
+          "value": "rgba(0, 0, 0, 1)"
+        },
+        {
+          "identifier": "color_brand_primary_inverse",
+          "type": "color",
+          "description": "Text color for element states where the primary background color is used",
+          "label": "Primary inverse color",
+          "value": "#fff"
+        },
+        {
+          "identifier": "color_secondary_button",
+          "type": "color",
+          "description": "Color of secondary outline buttons",
+          "label": "Secondary button color",
+          "value": "#393B3F"
+        },
+        {
+          "identifier": "color_tertiary_button",
+          "type": "color",
+          "description": "Color of tertiary underlined links and buttons",
+          "label": "Tertiary button color",
+          "value": "#393B3F"
+        },
+        {
+          "identifier": "color_text_primary",
+          "type": "color",
+          "description": "Text color for body and heading elements",
+          "label": "Primary text color",
+          "value": "rgba(0, 0, 0, 1)"
+        },
+        {
+          "identifier": "color_text_secondary",
+          "type": "color",
+          "description": "Used for secondary text elements, descrptions, etc.",
+          "label": "Secondary text color",
+          "value": "#5A5A5A"
+        },
+        {
+          "identifier": "color_link",
+          "type": "color",
+          "description": "Text color for link elements",
+          "label": "Link color",
+          "value": "#2863F6"
+        },
+        {
+          "identifier": "color_link_hover",
+          "type": "color",
+          "description": "Text color for link elements on hover action",
+          "label": "Link hover color",
+          "value": "#060DB6"
+        },
+        {
+          "identifier": "color_border",
+          "type": "color",
+          "description": "Used for borders throughout the help center",
+          "label": "Border color",
+          "value": "#EBEBEB"
+        },
+        {
+          "identifier": "block_bg",
+          "type": "color",
+          "description": "Background color for categories, sections, topics boxes",
+          "label": "Blocks color",
+          "value": "#1C1C1C"
+        },
+        {
+          "identifier": "block_text_color",
+          "type": "color",
+          "description": "Text color for categories, sections, topic boxes",
+          "label": "Blocks text color",
+          "value": "#fff"
+        },
+        {
+          "identifier": "color_brand_info",
+          "type": "color",
+          "description": "Color for info elements and info block on the homepage",
+          "label": "Brand info color",
+          "value": "#1B50F7"
+        },
+        {
+          "identifier": "color_brand_success",
+          "type": "color",
+          "description": "Color for success elements",
+          "label": "Brand success color",
+          "value": "#05BB0C"
+        },
+        {
+          "identifier": "color_brand_warning",
+          "type": "color",
+          "description": "Color for warning elements",
+          "label": "Brand warning color",
+          "value": "#DB8709"
+        },
+        {
+          "identifier": "color_brand_danger",
+          "type": "color",
+          "description": "Color for danger elements",
+          "label": "Brand danger color",
+          "value": "#C70606"
+        }
+      ]
+    },
+    {
+      "label": "Appearance",
+      "variables": [
+        {
+          "identifier": "border_radius_base",
+          "type": "text",
+          "description": "Border radius for buttons, form elements, category boxes, etc.",
+          "label": "Border radius",
+          "value": "5px"
+        },
+        {
+          "identifier": "border_radius_lg",
+          "type": "text",
+          "description": "Border radius for large elements and blocks",
+          "label": "Background elements border radius",
+          "value": "8px"
+        },
+        {
+          "identifier": "border_width",
+          "type": "text",
+          "description": "Border width for buttons and other elements",
+          "label": "Border width",
+          "value": "1px"
+        }
+      ]
+    },
+    {
+      "label": "Text",
+      "variables": [
+        {
+          "identifier": "font_size_base",
+          "type": "text",
+          "description": "Size for body text",
+          "label": "Text size",
+          "value": "16px"
+        },
+        {
+          "identifier": "heading_font",
+          "type": "list",
+          "description": "Font for headings",
+          "label": "Heading font",
+          "value": "'Inter', sans-serif",
+          "options": [
+            {
+              "label": "Arimo",
+              "value": "'Arimo', sans-serif"
+            },
+            {
+              "label": "Bitter",
+              "value": "'Bitter', sans-serif"
+            },
+            {
+              "label": "Catamaran",
+              "value": "'Catamaran', sans-serif"
+            },
+            {
+              "label": "Crimson Text",
+              "value": "'Crimson Text', sans-serif"
+            },
+            {
+              "label": "DM Sans",
+              "value": "'DM Sans', sans-serif"
+            },
+            {
+              "label": "EB Garamond",
+              "value": "'EB Garamond', sans-serif"
+            },
+            {
+              "label": "Epilogue",
+              "value": "'Epilogue', sans-serif"
+            },
+            {
+              "label": "Faustina",
+              "value": "'Faustina', sans-serif"
+            },
+            {
+              "label": "Fira Sans",
+              "value": "'Fira Sans', sans-serif"
+            },
+            {
+              "label": "IBM Plex Sans",
+              "value": "'IBM Plex Sans', sans-serif"
+            },
+            {
+              "label": "Inter",
+              "value": "'Inter', sans-serif"
+            },
+            {
+              "label": "Jost",
+              "value": "'Jost', sans-serif"
+            },
+            {
+              "label": "Lato",
+              "value": "'Lato', sans-serif"
+            },
+            {
+              "label": "Libre Franklin",
+              "value": "'Libre Franklin', sans-serif"
+            },
+            {
+              "label": "Lora",
+              "value": "'Lora', sans-serif"
+            },
+            {
+              "label": "Manrope",
+              "value": "'Manrope', sans-serif"
+            },
+            {
+              "label": "Merriweather",
+              "value": "'Merriweather', sans-serif"
+            },
+            {
+              "label": "Montserrat",
+              "value": "'Montserrat', sans-serif"
+            },
+            {
+              "label": "Mukta",
+              "value": "'Mukta', sans-serif"
+            },
+            {
+              "label": "Mulish",
+              "value": "'Mulish', sans-serif"
+            },
+            {
+              "label": "Noto Sans Display",
+              "value": "'Noto Sans Display', sans-serif"
+            },
+            {
+              "label": "Noto Serif",
+              "value": "'Noto Serif', sans-serif"
+            },
+            {
+              "label": "Nunito Sans",
+              "value": "'Nunito Sans', sans-serif"
+            },
+            {
+              "label": "Open Sans",
+              "value": "'Open Sans', sans-serif"
+            },
+            {
+              "label": "Oswald",
+              "value": "'Oswald', sans-serif"
+            },
+            {
+              "label": "PT Sans",
+              "value": "'PT Sans', sans-serif"
+            },
+            {
+              "label": "PT Serif",
+              "value": "'PT Serif', sans-serif"
+            },
+            {
+              "label": "Poppins",
+              "value": "'Poppins', sans-serif"
+            },
+            {
+              "label": "Prata",
+              "value": "'Prata', sans-serif"
+            },
+            {
+              "label": "Public Sans",
+              "value": "'Public Sans', sans-serif"
+            },
+            {
+              "label": "Raleway",
+              "value": "'Raleway', sans-serif"
+            },
+            {
+              "label": "Roboto",
+              "value": "'Roboto', sans-serif"
+            },
+            {
+              "label": "Rubik",
+              "value": "'Rubik', sans-serif"
+            },
+            {
+              "label": "Signika",
+              "value": "'Signika', sans-serif"
+            },
+            {
+              "label": "Source Sans Pro",
+              "value": "'Source Sans 3', sans-serif"
+            },
+            {
+              "label": "Ubuntu",
+              "value": "'Ubuntu', sans-serif"
+            },
+            {
+              "label": "Work Sans",
+              "value": "'Work Sans', sans-serif"
+            }
+          ]
+        },
+        {
+          "identifier": "heading_font_weight",
+          "type": "text",
+          "description": "Boldness of headings",
+          "label": "Heading font weight",
+          "value": "500"
+        },
+        {
+          "identifier": "font_family_base",
+          "type": "list",
+          "description": "Font for body text",
+          "label": "Text font",
+          "value": "'Inter', sans-serif",
+          "options": [
+            {
+              "label": "Arimo",
+              "value": "'Arimo', sans-serif"
+            },
+            {
+              "label": "Bitter",
+              "value": "'Bitter', sans-serif"
+            },
+            {
+              "label": "Catamaran",
+              "value": "'Catamaran', sans-serif"
+            },
+            {
+              "label": "Crimson Text",
+              "value": "'Crimson Text', sans-serif"
+            },
+            {
+              "label": "DM Sans",
+              "value": "'DM Sans', sans-serif"
+            },
+            {
+              "label": "EB Garamond",
+              "value": "'EB Garamond', sans-serif"
+            },
+            {
+              "label": "Epilogue",
+              "value": "'Epilogue', sans-serif"
+            },
+            {
+              "label": "Faustina",
+              "value": "'Faustina', sans-serif"
+            },
+            {
+              "label": "Fira Sans",
+              "value": "'Fira Sans', sans-serif"
+            },
+            {
+              "label": "IBM Plex Sans",
+              "value": "'IBM Plex Sans', sans-serif"
+            },
+            {
+              "label": "Inter",
+              "value": "'Inter', sans-serif"
+            },
+            {
+              "label": "Jost",
+              "value": "'Jost', sans-serif"
+            },
+            {
+              "label": "Lato",
+              "value": "'Lato', sans-serif"
+            },
+            {
+              "label": "Libre Franklin",
+              "value": "'Libre Franklin', sans-serif"
+            },
+            {
+              "label": "Lora",
+              "value": "'Lora', sans-serif"
+            },
+            {
+              "label": "Manrope",
+              "value": "'Manrope', sans-serif"
+            },
+            {
+              "label": "Merriweather",
+              "value": "'Merriweather', sans-serif"
+            },
+            {
+              "label": "Montserrat",
+              "value": "'Montserrat', sans-serif"
+            },
+            {
+              "label": "Mukta",
+              "value": "'Mukta', sans-serif"
+            },
+            {
+              "label": "Mulish",
+              "value": "'Mulish', sans-serif"
+            },
+            {
+              "label": "Noto Sans Display",
+              "value": "'Noto Sans Display', sans-serif"
+            },
+            {
+              "label": "Noto Serif",
+              "value": "'Noto Serif', sans-serif"
+            },
+            {
+              "label": "Nunito Sans",
+              "value": "'Nunito Sans', sans-serif"
+            },
+            {
+              "label": "Open Sans",
+              "value": "'Open Sans', sans-serif"
+            },
+            {
+              "label": "Oswald",
+              "value": "'Oswald', sans-serif"
+            },
+            {
+              "label": "PT Sans",
+              "value": "'PT Sans', sans-serif"
+            },
+            {
+              "label": "PT Serif",
+              "value": "'PT Serif', sans-serif"
+            },
+            {
+              "label": "Poppins",
+              "value": "'Poppins', sans-serif"
+            },
+            {
+              "label": "Prata",
+              "value": "'Prata', sans-serif"
+            },
+            {
+              "label": "Public Sans",
+              "value": "'Public Sans', sans-serif"
+            },
+            {
+              "label": "Raleway",
+              "value": "'Raleway', sans-serif"
+            },
+            {
+              "label": "Roboto",
+              "value": "'Roboto', sans-serif"
+            },
+            {
+              "label": "Rubik",
+              "value": "'Rubik', sans-serif"
+            },
+            {
+              "label": "Signika",
+              "value": "'Signika', sans-serif"
+            },
+            {
+              "label": "Source Sans Pro",
+              "value": "'Source Sans 3', sans-serif"
+            },
+            {
+              "label": "Ubuntu",
+              "value": "'Ubuntu', sans-serif"
+            },
+            {
+              "label": "Work Sans",
+              "value": "'Work Sans', sans-serif"
+            }
+          ]
+        },
+        {
+          "identifier": "line_height_body",
+          "type": "text",
+          "description": "Space between the lines of text",
+          "label": "Text line height",
+          "value": "1.5"
+        },
+        {
+          "identifier": "line_height_heading",
+          "type": "text",
+          "description": "Space between the lines of text",
+          "label": "Heading line height",
+          "value": "1.2"
+        }
+      ]
+    },
+    {
+      "label": "Header colors",
+      "variables": [
+        {
+          "identifier": "topbar_bg",
+          "type": "color",
+          "description": "Header background color",
+          "label": "Background color",
+          "value": "#fff"
+        },
+        {
+          "identifier": "topbar_text_color",
+          "type": "color",
+          "description": "Header text color",
+          "label": "Text color",
+          "value": "#282f48"
+        }
+      ]
+    },
+    {
+      "label": "Header elements",
+      "variables": [
+        {
+          "identifier": "help_center_name",
+          "type": "text",
+          "description": "Text displayed next to the logo",
+          "label": "Help center name",
+          "value": ""
+        },
+        {
+          "identifier": "show_category_menu",
+          "type": "checkbox",
+          "description": "A dropdown with links to categories",
+          "label": "Category menu",
+          "value": false
+        },
+        {
+          "identifier": "show_sign_in",
+          "type": "checkbox",
+          "description": "Show the sign-in link",
+          "label": "Sign-in",
+          "value": false
+        },
+        {
+          "identifier": "show_submit_a_request",
+          "type": "checkbox",
+          "description": "Show the Submit a request option link",
+          "label": "Submit a request",
+          "value": true
+        },
+        {
+          "identifier": "store_timezone",
+          "type": "list",
+          "description": "Sets store support availability status",
+          "label": "Store timezone",
+          "value": "-8",
+          "options": [
+            {
+              "value": "-12",
+              "label": "-12"
+            },
+            {
+              "value": "-11",
+              "label": "-11"
+            },
+            {
+              "value": "-10",
+              "label": "-10"
+            },
+            {
+              "value": "-9",
+              "label": "-9"
+            },
+            {
+              "value": "-8",
+              "label": "-8"
+            },
+            {
+              "value": "-7",
+              "label": "-7"
+            },
+            {
+              "value": "-6",
+              "label": "-6"
+            },
+            {
+              "value": "-5",
+              "label": "-5"
+            },
+            {
+              "value": "-4",
+              "label": "-4"
+            },
+            {
+              "value": "-3",
+              "label": "-3"
+            },
+            {
+              "value": "-2",
+              "label": "-2"
+            },
+            {
+              "value": "-1",
+              "label": "-1"
+            },
+            {
+              "value": "0",
+              "label": "0"
+            },
+            {
+              "value": "1",
+              "label": "+1"
+            },
+            {
+              "value": "2",
+              "label": "+2"
+            },
+            {
+              "value": "3",
+              "label": "+3"
+            },
+            {
+              "value": "4",
+              "label": "+4"
+            },
+            {
+              "value": "5",
+              "label": "+5"
+            },
+            {
+              "value": "6",
+              "label": "+6"
+            },
+            {
+              "value": "7",
+              "label": "+7"
+            },
+            {
+              "value": "8",
+              "label": "+8"
+            },
+            {
+              "value": "9",
+              "label": "+9"
+            },
+            {
+              "value": "10",
+              "label": "+10"
+            },
+            {
+              "value": "11",
+              "label": "+11"
+            },
+            {
+              "value": "12",
+              "label": "+12"
+            },
+            {
+              "value": "13",
+              "label": "+13"
+            },
+            {
+              "value": "14",
+              "label": "+14"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Header link 1",
+      "variables": [
+        {
+          "identifier": "topbar_link_1_title",
+          "type": "text",
+          "description": "Text of the link",
+          "label": "Text",
+          "value": "Modelle"
+        },
+        {
+          "identifier": "topbar_link_1_url",
+          "type": "text",
+          "description": "Link URL",
+          "label": "URL",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "label": "Header link 2",
+      "variables": [
+        {
+          "identifier": "topbar_link_2_title",
+          "type": "text",
+          "description": "Text of the link",
+          "label": "Text",
+          "value": "Zubehör"
+        },
+        {
+          "identifier": "topbar_link_2_url",
+          "type": "text",
+          "description": "Link URL",
+          "label": "URL",
+          "value": "https://pergolux.de/collections/pergola-zubehoer"
+        }
+      ]
+    },
+    {
+      "label": "Header link 3",
+      "variables": [
+        {
+          "identifier": "topbar_link_3_title",
+          "type": "text",
+          "description": "Text of the link",
+          "label": "Text",
+          "value": "Showroom"
+        },
+        {
+          "identifier": "topbar_link_3_url",
+          "type": "text",
+          "description": "Link URL",
+          "label": "URL",
+          "value": "https://pergolux.de/pages/showroom-3-0"
+        }
+      ]
+    },
+    {
+      "label": "Header link 4",
+      "variables": [
+        {
+          "identifier": "topbar_link_4_title",
+          "type": "text",
+          "description": "Text of the link",
+          "label": "Text",
+          "value": "Über uns"
+        },
+        {
+          "identifier": "topbar_link_4_url",
+          "type": "text",
+          "description": "Link URL",
+          "label": "URL",
+          "value": "https://pergolux.de/pages/ueber-uns"
+        }
+      ]
+    },
+    {
+      "label": "Footer",
+      "variables": [
+        {
+          "identifier": "footer_bg",
+          "type": "color",
+          "description": "Footer background color",
+          "label": "Background color",
+          "value": "#1C1C1C"
+        },
+        {
+          "identifier": "footer_text_color",
+          "type": "color",
+          "description": "Footer text color",
+          "label": "Text color",
+          "value": "#fff"
+        },
+        {
+          "identifier": "toggle_footer_creator_text",
+          "type": "checkbox",
+          "description": "Show the Lotus Themes copyright",
+          "label": "Copyright",
+          "value": false
+        }
+      ]
+    },
+    {
+      "label": "Home page layout",
+      "variables": [
+        {
+          "identifier": "show_info_block",
+          "type": "checkbox",
+          "description": "Show info block",
+          "label": "Info block",
+          "value": false
+        },
+        {
+          "identifier": "toggle_custom_blocks",
+          "type": "checkbox",
+          "description": "Show custom blocks",
+          "label": "Custom blocks",
+          "value": true
+        },
+        {
+          "identifier": "show_product_blocks",
+          "type": "checkbox",
+          "description": "Product blocks",
+          "label": "Show product blocks",
+          "value": true
+        },
+        {
+          "identifier": "promoted_articles_type",
+          "type": "list",
+          "description": "Select how you would like to display promoted articles",
+          "label": "Promoted articles display type",
+          "value": "hidden",
+          "options": [
+            {
+              "label": "Hidden",
+              "value": "hidden"
+            },
+            {
+              "label": "Accordion",
+              "value": "accordion"
+            },
+            {
+              "label": "List",
+              "value": "list"
+            }
+          ]
+        },
+        {
+          "identifier": "category_tree_type",
+          "type": "list",
+          "description": "Select how you would like to display categories",
+          "label": "Categories display type",
+          "value": "hidden",
+          "options": [
+            {
+              "label": "Hidden",
+              "value": "hidden"
+            },
+            {
+              "label": "Accordion",
+              "value": "accordion"
+            },
+            {
+              "label": "Boxes",
+              "value": "boxes"
+            },
+            {
+              "label": "Tree with articles",
+              "value": "tree"
+            },
+            {
+              "label": "Tree with sections",
+              "value": "tree_sections"
+            }
+          ]
+        },
+        {
+          "identifier": "category_tree_boxes_alignment",
+          "type": "list",
+          "description": "Elements alignment. Only applies when categories display type is set to boxes",
+          "label": "Categories content alignment",
+          "value": "start",
+          "options": [
+            {
+              "label": "Center",
+              "value": "center"
+            },
+            {
+              "label": "Left",
+              "value": "start"
+            }
+          ]
+        },
+        {
+          "identifier": "show_recent_activities",
+          "type": "list",
+          "description": "Show recent activities",
+          "label": "Recent activities",
+          "value": "hidden",
+          "options": [
+            {
+              "label": "Hidden",
+              "value": "hidden"
+            },
+            {
+              "label": "Community",
+              "value": "community"
+            },
+            {
+              "label": "Articles",
+              "value": "articles"
+            }
+          ]
+        },
+        {
+          "identifier": "toggle_contact_boxes",
+          "type": "checkbox",
+          "description": "Show the contact boxes",
+          "label": "Contact Boxes",
+          "value": false
+        },
+        {
+          "identifier": "toggle_bottom_cta",
+          "type": "checkbox",
+          "description": "Show CTA",
+          "label": "CTA",
+          "value": true
+        },
+        {
+          "identifier": "categories_per_line",
+          "type": "range",
+          "description": "Number of categories displayed per line",
+          "label": "Number of categories per line",
+          "value": 4,
+          "min": 1,
+          "max": 6
+        },
+        {
+          "identifier": "promoted_articles_per_line",
+          "type": "range",
+          "description": "Number of promoted articles displayed per line",
+          "label": "Number of promoted articles per line",
+          "value": 3,
+          "min": 1,
+          "max": 6
+        }
+      ]
+    },
+    {
+      "label": "Hero unit",
+      "variables": [
+        {
+          "identifier": "hero_unit_alignment",
+          "type": "list",
+          "description": "Elements alignment",
+          "label": "Hero unit content alignment",
+          "value": "center",
+          "options": [
+            {
+              "label": "Center",
+              "value": "center"
+            },
+            {
+              "label": "Text left",
+              "value": "text-start"
+            },
+            {
+              "label": "Left",
+              "value": "start"
+            }
+          ]
+        },
+        {
+          "identifier": "hero_unit_bg",
+          "type": "color",
+          "description": "The background color of the search area",
+          "label": "Background color",
+          "value": "#EBF3FF"
+        },
+        {
+          "identifier": "show_hero_unit_image",
+          "type": "checkbox",
+          "description": "Show hero unit instead of the solid background color",
+          "label": "Show the background image",
+          "value": true
+        },
+        {
+          "identifier": "hero_unit_mask_bg",
+          "type": "color",
+          "description": "Color of the overlay",
+          "label": "Background image overlay color",
+          "value": "rgba(0, 0, 0, 0.02)"
+        },
+        {
+          "identifier": "hero_homepage_image",
+          "type": "file",
+          "description": "The recommended dimensions: 1600x1100px",
+          "label": "Homepage background image"
+        },
+        {
+          "identifier": "hero_unit_color_text",
+          "type": "color",
+          "description": "Text color of the hero unit content",
+          "label": "Text color",
+          "value": "rgba(255, 255, 255, 1)"
+        },
+        {
+          "identifier": "hero_title",
+          "type": "text",
+          "description": "Text above the search field",
+          "label": "Heading",
+          "value": "Hi, How can we help?"
+        },
+        {
+          "identifier": "search_placeholder",
+          "type": "text",
+          "description": "Text for the search field",
+          "label": "Search placeholder",
+          "value": "Search..."
+        },
+        {
+          "identifier": "show_hero_unit_button",
+          "type": "checkbox",
+          "description": "Show the search button",
+          "label": "Search button",
+          "value": false
+        },
+        {
+          "identifier": "show_popular_searches",
+          "type": "checkbox",
+          "description": "Show the popular searches",
+          "label": "Popular searches",
+          "value": false
+        },
+        {
+          "identifier": "popular_searches_label",
+          "type": "text",
+          "description": "Text displayed before the keywords",
+          "label": "Popular searches label",
+          "value": "Popular"
+        },
+        {
+          "identifier": "popular_searches_keywords",
+          "type": "text",
+          "description": "Comma-separated keywords",
+          "label": "Popular searches keywords",
+          "value": "installation, branding, customization"
+        }
+      ]
+    },
+    {
+      "label": "Info Block",
+      "variables": [
+        {
+          "identifier": "info_block_title",
+          "type": "text",
+          "description": "Text displayed on the top of the block",
+          "label": "Heading",
+          "value": "Information"
+        },
+        {
+          "identifier": "info_block_text",
+          "type": "text",
+          "description": "The main text of the block",
+          "label": "Body",
+          "value": "COVID-19 might have sent us home, but we are still there for you via email and chat. Delivery info COVID-19 Your parcel will arrive on time. All orders can be processed normally. The highest hygiene standards apply in our warehouse as well as at delivery. This also applies to your package and the products you order."
+        }
+      ]
+    },
+    {
+      "label": "Custom blocks",
+      "variables": [
+        {
+          "identifier": "custom_block_header",
+          "type": "text",
+          "description": "Custom blocks header",
+          "label": "Header",
+          "value": "Popular topics"
+        },
+        {
+          "identifier": "custom_blocks_alignment",
+          "type": "list",
+          "description": "Elements alignment. Only applies to desktop layout (screens wider than 768px)",
+          "label": "Custom Blocks content alignment",
+          "value": "center",
+          "options": [
+            {
+              "label": "Center",
+              "value": "center"
+            },
+            {
+              "label": "Left",
+              "value": "start"
+            }
+          ]
+        },
+        {
+          "identifier": "custom_blocks_per_line",
+          "type": "range",
+          "description": "Number of custom blocks displayed per line",
+          "label": "Number of custom blocks per line",
+          "value": 4,
+          "min": 1,
+          "max": 6
+        },
+        {
+          "identifier": "icon_color",
+          "type": "color",
+          "description": "Color of the custom block icons",
+          "label": "Icon color",
+          "value": "rgba(7, 7, 7, 1)"
+        },
+        {
+          "identifier": "icon_height",
+          "type": "text",
+          "description": "Height of the custom blocks icons",
+          "label": "Icon height",
+          "value": "64px"
+        }
+      ]
+    },
+    {
+      "label": "Custom block 1",
+      "variables": [
+        {
+          "identifier": "custom_block_1_type",
+          "type": "list",
+          "description": "Custom block type",
+          "label": "Type",
+          "value": "custom",
+          "options": [
+            {
+              "label": "Hidden",
+              "value": "hidden"
+            },
+            {
+              "label": "Custom",
+              "value": "custom"
+            },
+            {
+              "label": "Community",
+              "value": "community"
+            },
+            {
+              "label": "Submit a request",
+              "value": "new_request"
+            }
+          ]
+        },
+        {
+          "identifier": "custom_block_1_icon",
+          "type": "file",
+          "description": "The recommended dimensions: 100x100px",
+          "label": "Icon"
+        },
+        {
+          "identifier": "custom_block_1_title",
+          "type": "text",
+          "description": "Custom block title",
+          "label": "Heading",
+          "value": "Looking for your order?"
+        },
+        {
+          "identifier": "custom_block_1_description",
+          "type": "text",
+          "description": "Custom block 1 text",
+          "label": "Text",
+          "value": "Track Order"
+        },
+        {
+          "identifier": "custom_block_1_url",
+          "type": "text",
+          "description": "Custom block URL",
+          "label": "URL",
+          "value": "/hc/en-gb/categories/27015575091090"
+        }
+      ]
+    },
+    {
+      "label": "Custom block 2",
+      "variables": [
+        {
+          "identifier": "custom_block_2_type",
+          "type": "list",
+          "description": "Custom block type",
+          "label": "Type",
+          "value": "custom",
+          "options": [
+            {
+              "label": "Hidden",
+              "value": "hidden"
+            },
+            {
+              "label": "Custom",
+              "value": "custom"
+            },
+            {
+              "label": "Community",
+              "value": "community"
+            },
+            {
+              "label": "Submit a request",
+              "value": "new_request"
+            }
+          ]
+        },
+        {
+          "identifier": "custom_block_2_icon",
+          "type": "file",
+          "description": "The recommended dimensions: 100x100px",
+          "label": "Icon"
+        },
+        {
+          "identifier": "custom_block_2_title",
+          "type": "text",
+          "description": "Custom block title",
+          "label": "Heading",
+          "value": "Assembly Help"
+        },
+        {
+          "identifier": "custom_block_2_description",
+          "type": "text",
+          "description": "Custom block 2 text",
+          "label": "Text",
+          "value": "View Instructions"
+        },
+        {
+          "identifier": "custom_block_2_url",
+          "type": "text",
+          "description": "Custom block URL",
+          "label": "URL",
+          "value": "https://pergolux-010123.zendesk.com/hc/en-gb/categories/27015591704594-Assembly"
+        }
+      ]
+    },
+    {
+      "label": "Custom block 3",
+      "variables": [
+        {
+          "identifier": "custom_block_3_type",
+          "type": "list",
+          "description": "Custom block type",
+          "label": "Type",
+          "value": "custom",
+          "options": [
+            {
+              "label": "Hidden",
+              "value": "hidden"
+            },
+            {
+              "label": "Custom",
+              "value": "custom"
+            },
+            {
+              "label": "Community",
+              "value": "community"
+            },
+            {
+              "label": "Submit a request",
+              "value": "new_request"
+            }
+          ]
+        },
+        {
+          "identifier": "custom_block_3_icon",
+          "type": "file",
+          "description": "The recommended dimensions: 100x100px",
+          "label": "Icon"
+        },
+        {
+          "identifier": "custom_block_3_title",
+          "type": "text",
+          "description": "Custom block title",
+          "label": "Heading",
+          "value": "Smart Home Guide"
+        },
+        {
+          "identifier": "custom_block_3_description",
+          "type": "text",
+          "description": "Custom block 3 text",
+          "label": "Text",
+          "value": "View Documentation"
+        },
+        {
+          "identifier": "custom_block_3_url",
+          "type": "text",
+          "description": "Custom block URL",
+          "label": "URL",
+          "value": "/hc/en-gb/categories/27015591704594"
+        }
+      ]
+    },
+    {
+      "label": "Custom block 4",
+      "variables": [
+        {
+          "identifier": "custom_block_4_type",
+          "type": "list",
+          "description": "Custom block type",
+          "label": "Type",
+          "value": "hidden",
+          "options": [
+            {
+              "label": "Hidden",
+              "value": "hidden"
+            },
+            {
+              "label": "Custom",
+              "value": "custom"
+            },
+            {
+              "label": "Community",
+              "value": "community"
+            },
+            {
+              "label": "Submit a request",
+              "value": "new_request"
+            }
+          ]
+        },
+        {
+          "identifier": "custom_block_4_icon",
+          "type": "file",
+          "description": "The recommended dimensions: 100x100px",
+          "label": "Icon"
+        },
+        {
+          "identifier": "custom_block_4_title",
+          "type": "text",
+          "description": "Custom block title",
+          "label": "Heading",
+          "value": "Aftercare"
+        },
+        {
+          "identifier": "custom_block_4_description",
+          "type": "text",
+          "description": "Custom block 4 text",
+          "label": "Text",
+          "value": ""
+        },
+        {
+          "identifier": "custom_block_4_url",
+          "type": "text",
+          "description": "Custom block URL",
+          "label": "URL",
+          "value": "/hc/en-gb/categories/27015641586962"
+        }
+      ]
+    },
+    {
+      "label": "Custom block 5",
+      "variables": [
+        {
+          "identifier": "custom_block_5_type",
+          "type": "list",
+          "description": "Custom block type",
+          "label": "Type",
+          "value": "hidden",
+          "options": [
+            {
+              "label": "Hidden",
+              "value": "hidden"
+            },
+            {
+              "label": "Custom",
+              "value": "custom"
+            },
+            {
+              "label": "Community",
+              "value": "community"
+            },
+            {
+              "label": "Submit a request",
+              "value": "new_request"
+            }
+          ]
+        },
+        {
+          "identifier": "custom_block_5_icon",
+          "type": "file",
+          "description": "The recommended dimensions: 100x100px",
+          "label": "Icon"
+        },
+        {
+          "identifier": "custom_block_5_title",
+          "type": "text",
+          "description": "Custom block title",
+          "label": "Heading",
+          "value": "Hidden"
+        },
+        {
+          "identifier": "custom_block_5_description",
+          "type": "text",
+          "description": "Custom block 5 text",
+          "label": "Text",
+          "value": "Custom block text"
+        },
+        {
+          "identifier": "custom_block_5_url",
+          "type": "text",
+          "description": "Custom block URL",
+          "label": "URL",
+          "value": "#"
+        }
+      ]
+    },
+    {
+      "label": "Custom block 6",
+      "variables": [
+        {
+          "identifier": "custom_block_6_type",
+          "type": "list",
+          "description": "Custom block type",
+          "label": "Type",
+          "value": "hidden",
+          "options": [
+            {
+              "label": "Hidden",
+              "value": "hidden"
+            },
+            {
+              "label": "Custom",
+              "value": "custom"
+            },
+            {
+              "label": "Community",
+              "value": "community"
+            },
+            {
+              "label": "Submit a request",
+              "value": "new_request"
+            }
+          ]
+        },
+        {
+          "identifier": "custom_block_6_icon",
+          "type": "file",
+          "description": "The recommended dimensions: 100x100px",
+          "label": "Icon"
+        },
+        {
+          "identifier": "custom_block_6_title",
+          "type": "text",
+          "description": "Custom block title",
+          "label": "Heading",
+          "value": "Hidden"
+        },
+        {
+          "identifier": "custom_block_6_description",
+          "type": "text",
+          "description": "Custom block 6 text",
+          "label": "Text",
+          "value": "Custom block text"
+        },
+        {
+          "identifier": "custom_block_6_url",
+          "type": "text",
+          "description": "Custom block URL",
+          "label": "URL",
+          "value": "#"
+        }
+      ]
+    },
+    {
+      "label": "Custom block 7",
+      "variables": [
+        {
+          "identifier": "custom_block_7_type",
+          "type": "list",
+          "description": "Custom block type",
+          "label": "Type",
+          "value": "hidden",
+          "options": [
+            {
+              "label": "Hidden",
+              "value": "hidden"
+            },
+            {
+              "label": "Custom",
+              "value": "custom"
+            },
+            {
+              "label": "Community",
+              "value": "community"
+            },
+            {
+              "label": "Submit a request",
+              "value": "new_request"
+            }
+          ]
+        },
+        {
+          "identifier": "custom_block_7_icon",
+          "type": "file",
+          "description": "The recommended dimensions: 100x100px",
+          "label": "Icon"
+        },
+        {
+          "identifier": "custom_block_7_title",
+          "type": "text",
+          "description": "Custom block title",
+          "label": "Heading",
+          "value": "Hidden"
+        },
+        {
+          "identifier": "custom_block_7_description",
+          "type": "text",
+          "description": "Custom block 7 text",
+          "label": "Text",
+          "value": "Custom block text"
+        },
+        {
+          "identifier": "custom_block_7_url",
+          "type": "text",
+          "description": "Custom block URL",
+          "label": "URL",
+          "value": "#"
+        }
+      ]
+    },
+    {
+      "label": "Custom block 8",
+      "variables": [
+        {
+          "identifier": "custom_block_8_type",
+          "type": "list",
+          "description": "Custom block type",
+          "label": "Type",
+          "value": "hidden",
+          "options": [
+            {
+              "label": "Hidden",
+              "value": "hidden"
+            },
+            {
+              "label": "Custom",
+              "value": "custom"
+            },
+            {
+              "label": "Community",
+              "value": "community"
+            },
+            {
+              "label": "Submit a request",
+              "value": "new_request"
+            }
+          ]
+        },
+        {
+          "identifier": "custom_block_8_icon",
+          "type": "file",
+          "description": "The recommended dimensions: 100x100px",
+          "label": "Icon"
+        },
+        {
+          "identifier": "custom_block_8_title",
+          "type": "text",
+          "description": "Custom block title",
+          "label": "Heading",
+          "value": "Hidden"
+        },
+        {
+          "identifier": "custom_block_8_description",
+          "type": "text",
+          "description": "Custom block 8 text",
+          "label": "Text",
+          "value": "Custom block text"
+        },
+        {
+          "identifier": "custom_block_8_url",
+          "type": "text",
+          "description": "Custom block URL",
+          "label": "URL",
+          "value": "#"
+        }
+      ]
+    },
+    {
+      "label": "Product blocks",
+      "variables": [
+        {
+          "identifier": "prod_block_header",
+          "type": "text",
+          "description": "Product block header",
+          "label": "Header",
+          "value": "Get Help by Product"
+        }
+      ]
+    },
+    {
+      "label": "Product block 1",
+      "variables": [
+        {
+          "identifier": "prod_img_1",
+          "type": "file",
+          "description": "Product block image 1",
+          "label": "Image"
+        },
+        {
+          "identifier": "prod_block_1",
+          "type": "text",
+          "description": "Product block 1 text",
+          "label": "Text",
+          "value": "Pergola S3"
+        },
+        {
+          "identifier": "prod_block_1_url",
+          "type": "text",
+          "description": "Product block 1 url",
+          "label": "URL",
+          "value": "#"
+        }
+      ]
+    },
+    {
+      "label": "Product block 2",
+      "variables": [
+        {
+          "identifier": "prod_img_2",
+          "type": "file",
+          "description": "Product block image 2",
+          "label": "Image"
+        },
+        {
+          "identifier": "prod_block_2",
+          "type": "text",
+          "description": "Product block 2 text",
+          "label": "Text",
+          "value": "Sundream S3"
+        },
+        {
+          "identifier": "prod_block_2_url",
+          "type": "text",
+          "description": "Product block 2 url",
+          "label": "URL",
+          "value": "#"
+        }
+      ]
+    },
+    {
+      "label": "Product block 3",
+      "variables": [
+        {
+          "identifier": "prod_img_3",
+          "type": "file",
+          "description": "Product block image 3",
+          "label": "Image"
+        },
+        {
+          "identifier": "prod_block_3",
+          "type": "text",
+          "description": "Product block 3 text",
+          "label": "Text",
+          "value": "Skydance S3"
+        },
+        {
+          "identifier": "prod_block_3_url",
+          "type": "text",
+          "description": "Product block 3 url",
+          "label": "URL",
+          "value": "#"
+        }
+      ]
+    },
+    {
+      "label": "Product block 4",
+      "variables": [
+        {
+          "identifier": "prod_img_4",
+          "type": "file",
+          "description": "Product block image 4",
+          "label": "Image"
+        },
+        {
+          "identifier": "prod_block_4",
+          "type": "text",
+          "description": "Product block 4 text",
+          "label": "Text",
+          "value": "Custom Design S3"
+        },
+        {
+          "identifier": "prod_block_4_url",
+          "type": "text",
+          "description": "Product block 4 url",
+          "label": "URL",
+          "value": "#"
+        }
+      ]
+    },
+    {
+      "label": "Product block 5",
+      "variables": [
+        {
+          "identifier": "prod_img_5",
+          "type": "file",
+          "description": "Product block image 5",
+          "label": "Image"
+        },
+        {
+          "identifier": "prod_block_5",
+          "type": "text",
+          "description": "Product block 5 text",
+          "label": "Text",
+          "value": "Screen"
+        },
+        {
+          "identifier": "prod_block_5_url",
+          "type": "text",
+          "description": "Product block 5 url",
+          "label": "URL",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "label": "Product block 6",
+      "variables": [
+        {
+          "identifier": "prod_img_6",
+          "type": "file",
+          "description": "Product block image 6",
+          "label": "Image"
+        },
+        {
+          "identifier": "prod_block_6",
+          "type": "text",
+          "description": "Product block 6 text",
+          "label": "Text",
+          "value": "Glass wall"
+        },
+        {
+          "identifier": "prod_block_6_url",
+          "type": "text",
+          "description": "Product block 6 url",
+          "label": "URL",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "label": "Product block 7",
+      "variables": [
+        {
+          "identifier": "prod_img_7",
+          "type": "file",
+          "description": "Product block image 7",
+          "label": "Image"
+        },
+        {
+          "identifier": "prod_block_7",
+          "type": "text",
+          "description": "Product block 7 text",
+          "label": "Text",
+          "value": "Heater"
+        },
+        {
+          "identifier": "prod_block_7_url",
+          "type": "text",
+          "description": "Product block 7 url",
+          "label": "URL",
+          "value": "#"
+        }
+      ]
+    },
+    {
+      "label": "Product block 8",
+      "variables": [
+        {
+          "identifier": "prod_img_8",
+          "type": "file",
+          "description": "Product block image 8",
+          "label": "Image"
+        },
+        {
+          "identifier": "prod_block_8",
+          "type": "text",
+          "description": "Product block 8 text",
+          "label": "Text",
+          "value": ""
+        },
+        {
+          "identifier": "prod_block_8_url",
+          "type": "text",
+          "description": "Product block 8 url",
+          "label": "URL",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "label": "Bottom CTA",
+      "variables": [
+        {
+          "identifier": "cta_alignment",
+          "type": "list",
+          "description": "Elements alignment",
+          "label": "CTA content alignment",
+          "value": "center",
+          "options": [
+            {
+              "label": "Center",
+              "value": "center"
+            },
+            {
+              "label": "Left",
+              "value": "start"
+            }
+          ]
+        },
+        {
+          "identifier": "bottom_cta_title",
+          "type": "text",
+          "description": "Title at the bottom of the homepage section",
+          "label": "Heading",
+          "value": "Can't find what you're looking for?"
+        },
+        {
+          "identifier": "bottom_cta_subtitle",
+          "type": "text",
+          "description": "Subtitle at the bottom of the homepage section",
+          "label": "Subtitle",
+          "value": "We are here to help you every day 08-22!"
+        }
+      ]
+    },
+    {
+      "label": "Contact boxes",
+      "variables": [
+        {
+          "identifier": "contact_boxes_title",
+          "type": "text",
+          "description": "Title above the contact boxes",
+          "label": "Contact boxes title",
+          "value": "More Resources"
+        },
+        {
+          "identifier": "contact_boxes_per_line",
+          "type": "range",
+          "description": "Number of contact boxes displayed per line",
+          "label": "Number of contact boxes per line",
+          "value": 3,
+          "min": 1,
+          "max": 6
+        },
+        {
+          "identifier": "contact_boxes_icon_size",
+          "type": "text",
+          "description": "Height of the contact boxes icons",
+          "label": "Icon height",
+          "value": "32px"
+        }
+      ]
+    },
+    {
+      "label": "Contact Box 1",
+      "variables": [
+        {
+          "identifier": "contact_box_1_toggle",
+          "type": "checkbox",
+          "description": "Show or hide the Contact Box",
+          "label": "Show Contact Box",
+          "value": true
+        },
+        {
+          "identifier": "contact_box_1_link_toggle",
+          "type": "checkbox",
+          "description": "Enable this option if you want to use the box as link",
+          "label": "Use as link",
+          "value": true
+        },
+        {
+          "identifier": "contact_box_1_url",
+          "type": "text",
+          "description": "Contact box URL",
+          "label": "URL",
+          "value": "#"
+        },
+        {
+          "identifier": "contact_box_1_icon",
+          "type": "file",
+          "description": "The recommended dimensions: 100x100px",
+          "label": "Icon"
+        },
+        {
+          "identifier": "contact_box_1_title",
+          "type": "text",
+          "description": "Contact Box title",
+          "label": "Heading",
+          "value": "Register your product"
+        },
+        {
+          "identifier": "contact_box_1_text",
+          "type": "text",
+          "description": "Contact Box title",
+          "label": "Heading",
+          "value": "You can get support that’s tailored to you, owner exclusives and more"
+        }
+      ]
+    },
+    {
+      "label": "Contact Box 2",
+      "variables": [
+        {
+          "identifier": "contact_box_2_toggle",
+          "type": "checkbox",
+          "description": "Show or hide the Contact Box",
+          "label": "Show Contact Box",
+          "value": true
+        },
+        {
+          "identifier": "contact_box_2_link_toggle",
+          "type": "checkbox",
+          "description": "Enable this option if you want to use the box as link",
+          "label": "Use as link",
+          "value": false
+        },
+        {
+          "identifier": "contact_box_2_url",
+          "type": "text",
+          "description": "Contact box URL",
+          "label": "URL",
+          "value": "#"
+        },
+        {
+          "identifier": "contact_box_2_icon",
+          "type": "file",
+          "description": "The recommended dimensions: 100x100px",
+          "label": "Icon"
+        },
+        {
+          "identifier": "contact_box_2_title",
+          "type": "text",
+          "description": "Contact box title",
+          "label": "Heading",
+          "value": "Our helpline hours:"
+        },
+        {
+          "identifier": "contact_box_2_text",
+          "type": "text",
+          "description": "Contact box title",
+          "label": "Heading",
+          "value": "8:00am - 8:00pm CST Monday to Friday; 9:00am - 6:00pm CST Saturday"
+        }
+      ]
+    },
+    {
+      "label": "Contact box 3",
+      "variables": [
+        {
+          "identifier": "contact_box_3_toggle",
+          "type": "checkbox",
+          "description": "Show or hide the Contact Box",
+          "label": "Show Contact Box",
+          "value": true
+        },
+        {
+          "identifier": "contact_box_3_link_toggle",
+          "type": "checkbox",
+          "description": "Enable this option if you want to use the box as link",
+          "label": "Use as link",
+          "value": false
+        },
+        {
+          "identifier": "contact_box_3_url",
+          "type": "text",
+          "description": "Contact box URL",
+          "label": "URL",
+          "value": "#"
+        },
+        {
+          "identifier": "contact_box_3_icon",
+          "type": "file",
+          "description": "The recommended dimensions: 100x100px",
+          "label": "Icon"
+        },
+        {
+          "identifier": "contact_box_3_title",
+          "type": "text",
+          "description": "Contact Box title",
+          "label": "Heading",
+          "value": "Follow us on X"
+        },
+        {
+          "identifier": "contact_box_3_text",
+          "type": "text",
+          "description": "Contact box title",
+          "label": "Heading",
+          "value": "Get the latest news and updates first"
+        }
+      ]
+    },
+    {
+      "label": "Contact box 4",
+      "variables": [
+        {
+          "identifier": "contact_box_4_toggle",
+          "type": "checkbox",
+          "description": "Show or hide the contact box",
+          "label": "Show contact box",
+          "value": false
+        },
+        {
+          "identifier": "contact_box_4_link_toggle",
+          "type": "checkbox",
+          "description": "Enable this option if you want to use the box as link",
+          "label": "Use as link",
+          "value": true
+        },
+        {
+          "identifier": "contact_box_4_url",
+          "type": "text",
+          "description": "Contact box URL",
+          "label": "URL",
+          "value": "#"
+        },
+        {
+          "identifier": "contact_box_4_icon",
+          "type": "file",
+          "description": "The recommended dimensions: 100x100px",
+          "label": "Icon"
+        },
+        {
+          "identifier": "contact_box_4_title",
+          "type": "text",
+          "description": "Contact Box title",
+          "label": "Heading",
+          "value": "YouTube Support"
+        },
+        {
+          "identifier": "contact_box_4_text",
+          "type": "text",
+          "description": "Contact Box title",
+          "label": "Heading",
+          "value": "For how-to and support videos please visit our channel"
+        }
+      ]
+    },
+    {
+      "label": "Footer social media links",
+      "variables": [
+        {
+          "identifier": "instagram_url",
+          "type": "text",
+          "description": "URL to Instagram account",
+          "label": "Instagram page URL",
+          "value": "https://www.instagram.com/pergolux_gmbh/"
+        },
+        {
+          "identifier": "tiktok_url",
+          "type": "text",
+          "description": "URL to Tiktok account",
+          "label": "Tiktok account URL",
+          "value": "https://www.facebook.com/pergoluxgmbh/"
+        },
+        {
+          "identifier": "youtube_url",
+          "type": "text",
+          "description": "URL to Youtube account",
+          "label": "YouTube page URL",
+          "value": "https://www.youtube.com/channel/UChFl3vWUBB0M5y4egNpDvsw"
+        }
+      ]
+    },
+    {
+      "label": "Article page elements",
+      "variables": [
+        {
+          "identifier": "info_title",
+          "type": "text",
+          "description": "Default Info callout title",
+          "label": "Info title",
+          "value": "Note"
+        },
+        {
+          "identifier": "success_title",
+          "type": "text",
+          "description": "Default Success callout title",
+          "label": "Success title",
+          "value": "Success"
+        },
+        {
+          "identifier": "warning_title",
+          "type": "text",
+          "description": "Default Warning callout title",
+          "label": "Warning title",
+          "value": "Warning"
+        },
+        {
+          "identifier": "danger_title",
+          "type": "text",
+          "description": "Default Danger callout title",
+          "label": "Danger title",
+          "value": "Danger"
+        },
+        {
+          "identifier": "show_articles_in_section",
+          "type": "checkbox",
+          "description": "Show sidebar of articles in section",
+          "label": "Articles in section",
+          "value": true
+        },
+        {
+          "identifier": "show_article_author",
+          "type": "checkbox",
+          "description": "Show author image and name",
+          "label": "Author",
+          "value": true
+        },
+        {
+          "identifier": "show_article_comments",
+          "type": "checkbox",
+          "description": "Show comments on articles",
+          "label": "Comments",
+          "value": false
+        },
+        {
+          "identifier": "show_follow_article",
+          "type": "checkbox",
+          "description": "Users can follow a specific article",
+          "label": "Follow",
+          "value": true
+        },
+        {
+          "identifier": "show_print_article",
+          "type": "checkbox",
+          "description": "Users can click the button to print an article",
+          "label": "Print Button",
+          "value": true
+        },
+        {
+          "identifier": "show_article_sharing",
+          "type": "checkbox",
+          "description": "Show social media sharing on article",
+          "label": "Social sharing",
+          "value": true
+        },
+        {
+          "identifier": "show_article_boxes",
+          "type": "checkbox",
+          "description": "Show the same contact boxes as on the homepage",
+          "label": "Contact boxes",
+          "value": false
+        }
+      ]
+    },
+    {
+      "label": "Beautify Content",
+      "variables": [
+        {
+          "identifier": "beautify_article",
+          "type": "checkbox",
+          "description": "Enhance formatting content elements",
+          "label": "Beautify Text Content",
+          "value": true
+        }
+      ]
+    },
+    {
+      "label": "Section page elements",
+      "variables": [
+        {
+          "identifier": "show_follow_section",
+          "type": "checkbox",
+          "description": "Users can follow a specific section",
+          "label": "Follow",
+          "value": false
+        }
+      ]
+    },
+    {
+      "label": "Community post elements",
+      "variables": [
+        {
+          "identifier": "show_follow_community_post",
+          "type": "checkbox",
+          "description": "Users can follow a specific post",
+          "label": "Follow",
+          "value": false
+        },
+        {
+          "identifier": "show_print_post",
+          "type": "checkbox",
+          "description": "Users can click the button to print a post",
+          "label": "Print Button",
+          "value": true
+        },
+        {
+          "identifier": "show_community_post_sharing",
+          "type": "checkbox",
+          "description": "Show social media sharing on post",
+          "label": "Social sharing",
+          "value": true
+        }
+      ]
+    },
+    {
+      "label": "Community topic elements",
+      "variables": [
+        {
+          "identifier": "show_follow_community_topic",
+          "type": "checkbox",
+          "description": "Users can follow a specific topic",
+          "label": "Follow",
+          "value": false
+        }
+      ]
+    },
+    {
+      "label": "New request elements",
+      "variables": [
+        {
+          "identifier": "show_new_request_tip",
+          "type": "checkbox",
+          "description": "Show or hide new request page tip",
+          "label": "Show new request page tip",
+          "value": true
+        },
+        {
+          "identifier": "new_request_tip_text",
+          "type": "text",
+          "description": "Text of the tip to display",
+          "label": "Text",
+          "value": "Aim to include as much information and detail in your request as possible to reduce delays between replies"
+        }
+      ]
+    },
+    {
+      "label": "Error page elements",
+      "variables": [
+        {
+          "identifier": "error_page_articles_title",
+          "type": "text",
+          "description": "Text for the promoted articles",
+          "label": "Helpful articles title",
+          "value": "These articles might be helpful"
+        }
+      ]
+    },
+    {
+      "label": "New request list page",
+      "variables": [
+        {
+          "identifier": "request_list_beta",
+          "type": "checkbox",
+          "description": "Users can sort and filter requests, add and remove columns",
+          "label": "New request list experience",
+          "value": false
+        }
+      ]
     }
-]
+  ]
 }
