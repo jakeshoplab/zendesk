@@ -4,6 +4,7 @@
   "defaultLocale": "en",
   "version": "1.0.0",
   "api_version": 1,
+  "description": "A sample theme for Zendesk Help Center",
   "locales": {
     "en": {
       "welcome_message": "Welcome to our Help Center!",
@@ -12,6 +13,13 @@
     "fr": {
       "welcome_message": "Bienvenue dans notre centre d'aide !",
       "search_placeholder": "Rechercher des articles..."
+    }
+  },
+  "settings": {
+    "brand_color": {
+      "type": "color",
+      "label": "Brand color",
+      "default": "#000000"
     }
   }
 }
