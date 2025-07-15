@@ -3,7 +3,7 @@
   "author": "Your Name",
   "defaultLocale": "en",
   "version": "1.0.0",
-  "api_version": "1",
+  "api_version": 1,
   "locales": {
     "en": {
       "welcome_message": "Welcome to our Help Center!",
